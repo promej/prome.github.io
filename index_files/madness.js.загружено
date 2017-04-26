@@ -1,0 +1,63 @@
+
+
+
+
+var temmode = false; var oldbg = $('body').css('background-image');
+$(document).ready(function() {
+	detemmify();	
+	
+	var today = new Date();
+	if (today.getMonth()+'.'+today.getDate()=='3.1') 
+	{
+		$('.footerInner .tem').css('display', '');
+	}
+	else
+	{	
+		$('.footerInner .tem').css('display', 'none');
+	}
+	
+});
+
+function temmify() {
+	if (temmode) {
+		detemmify();
+		return;
+	}
+	
+	//Tell the world we are temmifing
+	console.log("[coLeg FundS InTENsIfeS]");		
+	temmode = true;	
+	
+	//IFrame Display
+	//http://heyyeyaaeyaaaeyaeyaa.com/ || http://www.cachemonet.com
+	//$('iframe#secrets').attr('src', 'http://www.cachemonet.com');
+	$('iframe#secrets').attr('src', 'http://heyyeyaaeyaaaeyaeyaa.com');
+	
+	//Fix the display
+	$('iframe#secrets').css('display', 'block');		
+	$('div#content').css('display', 'none');
+	$('.footerInner .tem').css('bottom', '0px');
+	$('#forumFooter').css('height', '0px');
+	
+
+}
+
+function detemmify () {
+		
+	//Turn temmode off
+	temmode = false;
+	
+	//Hide the things
+	$('.temmie').not('.noslide').slideUp();
+	$('.temmie.noslide').hide();
+	
+	//Remove the frame				
+	$('iframe#secrets').css('display', 'none');
+	$('iframe#secrets').attr('src', '');
+				
+	$('div#content').css('display', 'block');
+	$('.footerInner .tem').css('bottom', '');
+	$('#forumFooter').css('height', '');
+	
+	console.log("Stay deTEMMIEd!");
+}

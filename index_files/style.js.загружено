@@ -1,0 +1,801 @@
+(function($) {
+
+  var oldIE = false,
+    IE9 = false,
+    IEMobile = false,
+    modernIE = false,
+    operaMini = false,
+    iOS = false,
+    RTL = ($('html').attr('dir') == 'RTL');
+
+  // Browser check
+  (function() 
+  {
+    var test = document.createElement('div'),
+      userAgent = (navigator) ? navigator.userAgent : '',
+      transforms = ['transform', 'webkitTransform', 'msTransform'];
+
+    if (typeof test.style.borderRadius == 'undefined')
+    {
+      oldIE = true;
+      $('html').addClass('OldIE');
+    }
+    else if (typeof test.style.msTransform == 'string')
+    {
+      modernIE = true;
+      $('html').addClass('modernIE');
+      if (typeof test.style.msTransition == 'undefined')
+      {
+        IE9 = true;
+      }
+    }
+
+    IEMobile = (userAgent.indexOf('IEMobile/') >= 0);
+    operaMini = (userAgent.indexOf('Opera Mini') >= 0);
+    iOS = (userAgent.indexOf('like Mac OS X') > 0);
+
+    for (var i=0; i<transforms.length; i++)
+    {
+      if (typeof(test.style[transforms[i]]) != 'undefined')
+      {
+        $('html').addClass('canTransform');
+        break;
+      }
+    }
+
+    delete test;
+  }) ();
+
+  /*
+  * Find all IDs and return them as array
+  *
+  * list = string: '1,2' '1,2,3-6'
+  */
+  function findAllIDs(list, prefix)
+  {
+    var i, j, nodesRange, nodeIDs, startID, endID;
+
+    nodesList = list.split(',');
+    nodeIDs = [];
+    for (i=0; i<nodesList.length; i++)
+    {
+      nodesRange = nodesList[i].split('-');
+      startID = parseInt(nodesRange[0])
+      endID = (nodesRange.length == 1) ? startID : parseInt(nodesRange[1]);
+
+      if (isNaN(startID) || isNaN(endID) || startID < 1 || endID < startID || (endID - startID) > 100) return [];
+
+      for (j=startID; j<=endID; j++)
+      {
+        nodeIDs.push(prefix + j);
+      }
+    }
+
+    return nodeIDs;
+  }
+
+  /*
+  * Get ID from list of classes
+  */
+  function getID(classes, prefix)
+  {
+    var prefixLength = prefix.length,
+      list, i, entry;
+
+    classes = classes.replace("\t", ' ').replace("\n", ' ');
+    list = classes.split(' ');
+
+    for (i=0; i<list.length; i++)
+    {
+      entry = list[i].trim();
+      if (entry.substr(0, prefixLength) == prefix)
+      {
+        entry = parseInt(entry.substr(prefixLength));
+        if (!isNaN(entry) && entry)
+        {
+          return entry;
+        }
+      }
+    }
+    return 0;
+  }
+
+  /*
+  * Toggle item
+  */
+  function createToggle(link, items, cookieName, defaultCollapsed)
+  {
+    var collapsed = $.getCookie(cookieName),
+      gotCookie = (collapsed != null),
+      toggleItems = arguments.length > 4 ? arguments[4] : $();
+
+    function collapse(animate)
+    {
+      collapsed = true;
+      link.addClass('collapsed');
+      toggleItems.addClass('collapsed');
+      items.stop(true, true);
+
+      if (animate)
+      {
+        items.slideUp(200, function() {
+          items.css('display', 'none');
+        });
+      }
+      else
+      {
+        items.css('display', 'none');
+      }
+
+      if (defaultCollapsed && gotCookie)
+      {
+        $.deleteCookie(cookieName);
+      }
+      else if(!defaultCollapsed)
+      {
+        $.setCookie(cookieName, '1');
+        gotCookie = true;
+      }
+    }
+
+    function expand(animate)
+    {
+      collapsed = false;
+      link.removeClass('collapsed');
+      toggleItems.removeClass('collapsed');
+      items.stop(true, true);
+
+      items.css('display', '');
+      if (animate)
+      {
+        items.slideUp(0).slideDown(200);
+      }
+
+      if (!defaultCollapsed && gotCookie)
+      {
+        $.deleteCookie(cookieName);
+      }
+      else if(defaultCollapsed)
+      {
+        $.setCookie(cookieName, '0');
+        gotCookie = true;
+      }
+    }
+
+    collapsed = (gotCookie) ? collapsed : defaultCollapsed;
+    if (collapsed)
+    {
+      collapse(false);
+    }
+
+    link.click(function() {
+      if (collapsed)
+      {
+        expand(true);
+      }
+      else
+      {
+        collapse(true);
+      }
+      return false;
+    });
+  }
+
+  /*
+  * Do style stuff when DOM is ready
+  */
+  $(document).ready(function() 
+  {
+    // IE9 logo and login handle fixes
+    function fixIE9()
+    {
+      $('#logo, #loginBarHandle').each(function() {
+        var $this = $(this),
+          children = $this.children();
+        if (children.length == 1)
+        {
+          $this.css('min-width', Math.floor(children.width()) + 'px');
+        }
+      });
+    }
+    if (IE9)
+    {
+      fixIE9();
+      $(window).load(fixIE9);
+      $(window).resize(fixIE9);
+    }
+  
+    // Navigation menu
+    $('.navTabs .publicTabs .navTab.navigationHiddenTabs').prev().addClass('lastVisible');
+    $('#loginBarHandle').each(function() {
+      var handle = $(this),
+        tabs = $('.navTabs'),
+        w = $(window),
+        extra = 30;
+
+      function resize()
+      {
+        tabs.css('padding-right', w.width() > 400 ? Math.floor(handle.width() + extra) + 'px' : 0);
+      }
+
+      resize();
+      $(document).ready(resize);
+      w.resize(resize);
+    });
+
+    // Moderator bar
+    $('#moderatorBar').each(function() 
+    {
+      if ($('.itemCount.alert, .permissionTest', this).length > 0)
+      {
+        $(this).addClass('alert');
+      }
+    });
+
+    // Floating navigation
+    $('#forumFooter .topLink:first').each(function() {
+      var data = $('body').attr('data-floating-nav');
+      if (!data || !data.length) return;
+
+      var visible = false,
+        showTop = (data.indexOf('t') >= 0),
+        visibleTop = false,
+        showBottom = (data.indexOf('b') >= 0),
+        visibleBottom = false,
+        inputFocused = false;
+
+      var $this = $(this),
+        w = $(window),
+        body = $('body'),
+        content = $('#content .pageWidth'),
+        target = $this.attr('href').split('#')[0];
+
+      if (!content.length) return;
+      if (!showTop && !showBottom) return;
+
+      body.append('<div id="floatingNavigation" />');
+      var nav = $('#floatingNavigation');
+
+      function check()
+      {
+        if (inputFocused)
+        {
+          // Hide
+          if (visible)
+          {
+            nav.css('display', 'none');
+            visible = false;
+          }
+          return;
+        }
+
+        var windowWidth = w.width(),
+          windowHeight = (window.innerHeight) ? window.innerHeight : w.height(),
+          contentWidth = content.width(),
+          bodyHeight = body.height(),
+          scroll = w.scrollTop();
+
+        if (windowHeight < 350)
+        {
+          // Hide
+          if (visible)
+          {
+            nav.css('display', 'none');
+            visible = false;
+          }
+          return;
+        }
+
+        // Check for visible components
+        var doShowTop = showTop && (scroll > (windowHeight / 2)),
+          doShowBottom = showBottom && (scroll < (bodyHeight - windowHeight * 5 / 4));
+
+        if (!doShowTop && !doShowBottom)
+        {
+          // Hide
+          if (visible)
+          {
+            nav.css('display', 'none');
+            visible = false;
+          }
+          return;
+        }
+
+        function checkRebuildNavigation()
+        {
+          if (doShowTop !== visibleTop) return true;
+          if (doShowBottom !== visibleBottom) return true;
+          return false;
+        }
+
+        function navigateTo(target)
+        {
+          var item = $(target).filter(':first');
+          if (!item.length) return;
+
+          var offset = Math.floor(item.offset().top) + 'px';
+          $('html, body').animate({scrollTop: offset}, 150, 'easeInSine');
+        }
+
+        function navigate()
+        {
+          var target = $(this).attr('data-target');
+          navigateTo(target);
+          return false;
+        }
+
+        // Re-create HTML code
+        if (checkRebuildNavigation())
+        {
+          nav.html('');
+
+          if (doShowTop)
+          {
+            nav.append('<a class="floating-top" href="javascript:void(0);" data-target="#navigation">&uarr;</a>');
+          }
+          visibleTop = doShowTop;
+
+          if (doShowBottom)
+          {
+            nav.append('<a class="floating-bottom" href="javascript:void(0);" data-target="#forumFooter">&darr;</a>');
+          }
+          visibleBottom = doShowBottom;
+
+          nav.find('a').click(navigate);
+        }
+
+        var diff = 0;
+        if (iOS && window.innerHeight && (window.innerHeight - w.height()) > 40)
+        {
+          diff = 44;
+        }
+
+        // Show it
+        visible = true;
+        nav.css(RTL ? 'left' : 'right', ((windowWidth - contentWidth > 30) ? Math.floor((windowWidth - contentWidth) / 2 - 15) : 15) + 'px').css({
+          top: (windowHeight - 32 - diff) + 'px',
+          display: 'block'
+        });
+      }
+      check();
+      w.on('scroll resize', check);
+
+      $(document).ready(function() {
+        $('input, iframe').focus(function() {
+          inputFocused = true;
+          check();
+        }).blur(function() {
+          inputFocused = false;
+          check();
+        });
+      });
+    });
+
+    // Add clearing divs
+    $('.profilePage .mast .section.infoBlock .primaryContent, .profilePage .mast .section.infoBlock .secondaryContent').append('<div style="clear:both;" />');
+
+    // Wrap stuff
+    $('#content.resource_history .dataTable').wrap('<div class="primaryContent resourceHistory" />');
+    $('.commentContainer > .commentControls').wrapInner('<div class="primaryContent" />').css('margin-top', '10px').find('h4:first-child').css('margin-top', 0);
+    $('.dummyImage').parent().addClass('dummyImageContainer');
+
+    
+    // Tabs + tags/pages
+     $('.pageNavLinkGroup:first').each(function() {
+       var $this = $(this),
+         prev = $this.prev();
+
+       if (!prev.length) {
+         return;
+       }
+       if (!prev.hasClass('tabs') && !prev.children('.tabs').length) {
+         prev = prev.prev();
+         if (!prev.length || (!prev.hasClass('tabs') && !prev.children('.tabs').length)) {
+           return;
+         }
+       }
+       $this.after(prev);
+     });
+
+    
+    // Sidebar
+    $('.sidebar').not('.mainContent .sidebar').each(function(i) {
+      try {
+        var $this = $(this),
+          thisData = $this.attr('data-sidebar-toggle'),
+          data = thisData ? thisData : $('body').attr('data-sidebar-toggle'),
+          list = data.split(',', 2)
+          toggleWidth = parseInt(list[0]),
+          text = list[1];
+      } catch (e) {
+        return;
+      }
+
+      if (!data || list.length != 2 || !toggleWidth) return;
+
+      $this.before('<div id="sidebar-toggle-' + i + '" class="sidebarToggle" style="display: none; clear: both;"><a class="callToAction" href="javascript:void(0);"><span></span></a></div>');
+
+      var toggle = $('#sidebar-toggle-' + i),
+        buttonVisible = false,
+        contentVisible = false,
+        arrow = toggle.find('span').text(text).append('<strong>&darr;</strong>').find('strong:last');
+
+      function check()
+      {
+        if (Math.floor($(window).width()) < toggleWidth)
+        {
+          if (!buttonVisible)
+          {
+            toggle.css('display', '');
+            $this.css('display', contentVisible ? '' : 'none');
+            buttonVisible = true;
+          }
+          return;
+        }
+        if (buttonVisible)
+        {
+          toggle.css('display', 'none');
+          $this.css('display', '');
+          buttonVisible = false;
+        }
+      }
+
+      check();
+      $(window).resize(check);
+
+      toggle.find('a').click(function() {
+        if (!buttonVisible) return;
+        contentVisible = !contentVisible;
+
+        $this.css('display', contentVisible ? '' : 'none');
+        toggle.toggleClass('active', contentVisible);
+        arrow.html(contentVisible ? '&uarr;' : '&darr;');
+      });
+    });
+
+    // Fix nodes list
+    $('.nodeList:not(.nodeList .nodeList)').each(function() {
+      var nodeList = $(this);
+
+      // Combine nodes into big list
+      var children = nodeList.children(),
+        total = children.length,
+        joinList = $([]);
+
+      function wrapList() {
+        if (!joinList.length)
+        {
+          return;
+        }
+        joinList.wrapAll('<li class="node level_1 nodeNoTitle"><ol class="nodeList" /></li>');
+        joinList = $([]);
+      };
+
+      children.each(function(i) {
+        var node = $(this);
+        if (node.hasClass('groupNoChildren') || node.hasClass('level_2'))
+        {
+          joinList = joinList.add(node);
+        }
+        else
+        {
+          wrapList();
+        }
+      });
+      wrapList();
+      
+      // Add missing footer, count children
+      nodeList.children().each(function() {
+        var node = $(this);
+        if (!node.children('span.tlc').length)
+        {
+          node.append('<span class="tlc"></span><span class="trc"></span><span class="blc"></span><span class="brc"></span>');
+        }
+        var count = node.children('ol.nodeList').children().length;
+        if (count > 0 && count < 3)
+        {
+          node.addClass('shortNode');
+        }
+      });
+    });
+
+    $('.nodeList .node:last-child').prev('.node').addClass('beforeLast');
+    $('.nodeList .node:nth-child(2n)').addClass('even');
+    $('.nodeList .node:nth-child(2n+1)').addClass('odd');
+    
+    // Fix add-ons
+    $('#taigachat_full, .sectionMain.recentMediaBlock').removeClass('nodeList');
+    $('.commentWrapper > .messageSimple').addClass('primaryContent');
+    $('.galleryBbCode.primaryContent').removeClass('primaryContent');
+    $('.xengalleryContainer .mediaTabHeadings + .short.pageNavLinkGroup').each(function() {
+      $(this).prev().before($(this));
+    });
+
+    // IE stuff
+    if ($('html').hasClass('OldIE'))
+    {
+      $('.nodeList .nodeNoTitle li.first-child, .dataTable tr.dataRow:first-child').addClass('first-child');
+      $('.breadcrumb .crust:last-child, .nodeList .nodeList li:last-child, .dataTable tr.dataRow:last-child').addClass('last-child');
+    }
+
+    // Resize content
+    (function() {
+      function resizeContent() 
+      {
+        // Resize header
+        var header = $('#header'),
+          headerProxy = $('#headerProxy');
+        if (header.length && headerProxy.length && !header.hasClass('staticHeader'))
+        {
+          headerProxy.css('padding-top', Math.ceil(header.height()) + 'px');
+        }
+
+        // Move footer
+        (function() {
+          var content = $('#headerMover');
+          if (!content.length)
+          {
+            return;
+          }
+          var contentHeight = content.height(),
+            bodyHeight = $('body').height(),
+            diff = bodyHeight - contentHeight,
+            pageHeight = $(window).height();
+          content.css('min-height', Math.floor(pageHeight - diff) + 'px');
+        })();
+      };
+
+      resizeContent();
+      $(window).load(resizeContent);
+      $(window).resize(resizeContent);
+      $('.navTabs .mobileTabs').click(resizeContent);
+    })();
+
+    // Clickable rows
+    $('.discussionListItem .main, .nodeList .nodeInfo').click(function(event)
+    {
+      // Check resolution
+      if (IEMobile || $(window).width() > 700)
+      {
+        return;
+      }
+
+      // Find all links
+      var $this = $(this),
+        target = $(this).find('.title a[href], .nodeTitle a[href]').not('.unreadLink'),
+        links = $this.find('a, input').not('.posterDate a:not(.itemPageNav a)').not(target);
+
+      function doClick()
+      {
+        // document.location.href = target.attr('href');
+        var link = target.attr('href');
+        if (link.indexOf('://') >=0 || link.indexOf('/') == 0)
+        {
+          // absolute/external link
+          document.location.href = link;
+        }
+        else
+        {
+          var base = $('base');
+          if (base.length != 1)
+          {
+            document.location.href = link;
+          }
+          else
+          {
+            link = base.attr('href') + link;
+            document.location.href = link;
+          }
+        }
+        event.preventDefault();
+        return true;
+      }
+
+      function getOffset(obj) 
+      {
+        var obj2 = obj,
+          curtop = 0;
+          curleft = 0;
+        if (document.getElementById || document.all) 
+        {
+          do
+          {
+            curleft += obj.offsetLeft - obj.scrollLeft;
+            curtop += obj.offsetTop - obj.scrollTop;
+            obj = obj.offsetParent;
+            obj2 = obj2.parentNode;
+            while (obj2 != obj) 
+            {
+              curleft -= obj2.scrollLeft;
+              curtop -= obj2.scrollTop;
+              obj2 = obj2.parentNode;
+            }
+          }
+          while (obj.offsetParent);
+        } 
+        else if (document.layers)
+        {
+          curtop += obj.y;
+          curleft += obj.x;
+        }
+        return {top: curtop, left: curleft};
+      } 
+
+      if (target.length != 1 || (links.length == 0) && doClick())
+      {
+        return;
+      }
+      
+      // Calculate coordinates
+      var diff = 30,
+        x = event.pageX,
+        y = event.pageY,
+        match = false;
+
+      if (!x || !y) return;
+      
+      links.each(function() 
+      {
+        if (match) return;
+
+        var item = $(this);
+        if (!item.is(':visible'))
+        {
+          // hidden item
+          return;
+        }
+        
+        var offset = getOffset(this);
+          
+        if (offset.left > (x + diff) || offset.top > (y + diff))
+        {
+          // to left or above link
+          return;
+        }
+        
+        if ((offset.left + item.width()) < (x - diff) || (offset.top + item.height()) < (y - diff))
+        {
+          // to right or below link
+          return;
+        }
+        
+        match = true;
+      });
+      
+      if (!match)
+      {
+        doClick();
+      }
+    });
+
+    // Expand/collapse categories
+    $('.nodeList[data-expand]').each(function() {
+      var $this = $(this),
+        data = $this.attr('data-expand'),
+        list, categories, config, search, hidden;
+
+      if (!data || !data.length) return;
+
+      // Check configuration
+      config = data.split('|');
+      if (config.length < 3 || config[0] != '1') return;
+
+      // Parse config and find categories
+      if (config[1].length > 0)
+      {
+        list = config[1].split(',');
+        nodeIDs = findAllIDs(config[1], '.category.node_');
+        if (nodeIDs.length < 1) return;
+
+        categories = $this.find(nodeIDs.join(', ')).children('.categoryNodeInfo.categoryStrip').not('.empty');
+      }
+      else
+      {
+        categories = $this.find('.category > .categoryNodeInfo.categoryStrip').not('.empty');
+      }
+      if (!categories.length) return;
+
+      // Hide categories by default
+      if (config.length > 2 && config[2].length > 0)
+      {
+        hidden = findAllIDs(config[2], '.category.node_');
+        $this.find(hidden.join(', ')).attr('data-default-collapsed', '1');
+      }
+
+      categories.each(function() {
+        var $this = $(this),
+          category = $this.parent('.category'),
+          collapsed = false,
+          text, id, link, nodes;
+
+        if (!category.length) return;
+        id = getID(category.attr('class'), 'node_');
+
+        if (category.attr('data-default-collapsed') == '1')
+        {
+          collapsed = true;
+        }
+
+        text = $this.find('.categoryText .nodeTitle');
+        if (!text.length) return;
+
+        nodes = $this.next('ol.nodeList');
+        if (!nodes.length) return;
+
+        text.before('<a class="categoryToggle" href="#"></a>');
+        link = $this.find('.categoryToggle');
+
+        createToggle(link, nodes, 'node-' + id, collapsed, category);
+      });
+    });
+
+    // Static navigation
+    $('#header[data-static]').each(function() {
+      var header = $(this),
+        $window = $(window),
+        static = false,
+        container = header.children('#navigationContainer'),
+        offset, height, hashOffset;
+
+      if (!container.length)
+      {
+        return;
+      }
+
+      function enableStatic() {
+        header.addClass('staticNav');
+        static = true;
+      }
+
+      function disableStatic() {
+        header.removeClass('staticNav');
+        static = false;
+      }
+
+      function check(checkHash) {
+        var top = $window.scrollTop(),
+          hash = (checkHash && window.location.hash) ? window.location.hash : '',
+          target;
+
+        if (top > offset) {
+          if (!static) {
+            enableStatic();
+          }
+        } else {
+          if (static) {
+            disableStatic();
+          }
+        }
+
+        if (static && checkHash) {
+          try {
+            target = $(hash);
+          } catch (e) {
+            return;
+          }
+          if (target.length && Math.abs(target.offset().top - top) < hashOffset) {
+            window.scrollTo($window.scrollLeft(), $window.scrollTop() - hashOffset);
+          }
+        }
+      }
+
+      $window.load(function() {
+        var prev = container.prev();
+
+        // offset = container.offset().top;
+        offset = header.offset().top + header.height();
+        height = container.height();
+        hashOffset = container.height() + 10;
+
+        if (prev.length) {
+          prev.addClass('beforeNavigation');
+        } else {
+          header.addClass('navigationFirst');
+        }
+
+        check(true);
+        $window.scroll(check.bind(this, false));
+      });
+    });
+  });
+})(jQuery);

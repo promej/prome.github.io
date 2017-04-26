@@ -1,0 +1,4198 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://ilovebacons.com/showcase/starbound-hatter.145/ -->
+<html id="XenForo" lang="en-US" dir="LTR" class="Public LoggedIn Sidebar RunDeferred Responsive hasJs Touch HasDragDrop canTransform" xmlns:fb="http://www.facebook.com/2008/fbml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+		<!--<base href="http://ilovebacons.com/">--><base href=".">
+		<script async="" src="./index_files/analytics.js.загружено"></script><script>
+			var _b = document.getElementsByTagName('base')[0], _bH = "http://ilovebacons.com/";
+			if (_b && _b.href != _bH) _b.href = _bH;
+		</script>
+	
+
+<link rel="stylesheet" href="./index_files/font-awesome.min.css">
+
+	<title>Starbound Hatter | iLoveBacons</title>
+	
+	
+	<link rel="stylesheet" href="./index_files/css.php">
+	<link rel="stylesheet" href="./index_files/css(1).php">
+	
+	
+	<link href="./index_files/font-awesome.min(1).css" rel="stylesheet">
+
+
+
+	
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8570191-10', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+		<script src="./index_files/jquery-1.11.0.min.js.загружено"></script>	
+		
+	<script src="./index_files/xenforo.js.загружено"></script>
+	<script src="./index_files/style.js.загружено"></script>
+
+	<link rel="stylesheet" href="./index_files/font-awesome.min(2).css">
+
+	<script src="./index_files/jquery.tmpl.min.js.загружено"></script>
+	<script src="./index_files/jquery.easing.1.3.js.загружено"></script>
+	<script src="./index_files/jquery.elastislide.js.загружено"></script>
+	<script src="./index_files/gallery.js.загружено"></script>
+	<script src="./index_files/rating.js.загружено"></script>
+	<script src="./index_files/chat.js.загружено"></script>
+	<script src="./index_files/editor.js.загружено"></script>
+	<script src="./index_files/color_picker.js.загружено"></script>
+
+
+    
+        <link rel="stylesheet" href="./index_files/font-awesome.min(3).css">
+    
+
+
+<script src="./index_files/extend.js.загружено"></script>
+<script>var showtemplatebutton = 0;</script>
+<script src="./index_files/extend.js(1).загружено"></script>
+
+<script type="text/javascript">
+// JavaScript function
+(function()
+{
+	var TabTitle = {};
+
+	var updateTitle = function(text)
+	{
+		// get tabText
+		var tabText = document.title;
+
+		// remove alert
+		if (tabText[0] === '(')
+		{
+			tabText = tabText.slice(tabText.indexOf(' '));
+		}
+
+		// add tabText
+		if ((text + '').length > 0)
+		{
+			document.title = '(' + text + ') ' + tabText;
+		} 
+		else
+		{
+			document.title = tabText;
+		}
+	};
+
+	// called from jQuery function
+	TabTitle.setTitle = function(text)
+	{
+		if (!text)
+		{
+			text = '';
+		}
+
+		updateTitle(text);
+	};
+
+	window.TabTitle = TabTitle;
+
+})();
+
+// jQuery function 
+!function($, window, document, _undefined)
+{
+	var TabAlerts = {};
+	
+	TabAlerts.PollConnection = function()
+	{
+		// poll server every 15 seconds
+		TabAlerts.PollFrequency = 15000;
+
+		$(document).bind('XFAjaxSuccess', TabAlerts.AjaxSuccess);
+
+		TabAlerts.AjaxSuccess();
+		setInterval(TabAlerts.PollServer, TabAlerts.PollFrequency);
+	}
+
+	TabAlerts.PollServer = function()
+	{
+		if (!TabAlerts.xhr && new Date().getTime() - TabAlerts.lastAjaxTime > TabAlerts.PollFrequency)
+    	{
+			var ajaxStart = $(document).data('events').ajaxStart[0].handler;
+			
+			$(document).unbind('ajaxStart', ajaxStart);
+			
+			TabAlerts.xhr = XenForo.ajax('index.php?tabalerts', {}, function(){}, {
+				error: function(xhr, responseText, errorThrown)
+				{
+					delete(TabAlerts.xhr);
+					switch (responseText)
+					{
+						case 'timeout':
+						{
+							console.warn(XenForo.phrases.server_did_not_respond_in_time_try_again);
+							break;
+						}
+						case 'parsererror':
+						{
+							console.error('PHP ' + xhr.responseText);
+							break;
+						}
+					}
+					return false;
+				},
+				timeout: TabAlerts.PollFrequency
+			});
+			
+			$(document).bind('ajaxStart', ajaxStart);
+    	}
+	}
+
+	TabAlerts.AjaxSuccess = function(ajaxData)
+	{
+		// get alertCount		
+		var alertCount = parseInt($('#ConversationsMenu_Counter').text()) + parseInt($('#AlertsMenu_Counter').text());
+
+		// call JavaScript function
+		TabTitle.setTitle(alertCount);
+
+  		TabAlerts.lastAjaxTime = new Date().getTime();
+
+  		delete(TabAlerts.xhr);
+	}
+
+	$(document).ready(TabAlerts.PollConnection);
+}
+(jQuery, this, document);
+</script>
+
+	
+	<link rel="apple-touch-icon" href="http://ilovebacons.com/styles/black_responsive_blue/xenforo/logo.og.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS feed for iLoveBacons" href="http://ilovebacons.com/forums/-/index.rss">
+	
+	
+	
+	<meta property="og:site_name" content="iLoveBacons">
+	
+	<meta property="og:image" content="http://ilovebacons.com/data/showcase/4/4042-2f46ddfad52e8f2401a6f1f08d26c2a3.jpg">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://ilovebacons.com/showcase/starbound-hatter.145/?page=1">
+	<meta property="og:title" content="Starbound Hatter">
+	<meta property="og:description" content="Create multiplayer compatible custom hats">
+	
+	<meta property="fb:app_id" content="154257938093760">
+	<meta property="fb:admins" content="100000317289006">
+
+
+
+
+
+</head>
+
+
+
+<body data-floating-nav="" data-sidebar-toggle="800px,Sidebar">
+<script type="text/javascript">sonnbXenGalleryEnableInterlace = 0;</script>
+
+
+
+
+	
+
+
+
+
+<div id="headerMover" style="min-height: 624px;">
+<div class="gradientbkg"></div>
+<header>
+	
+
+
+<div id="header">
+	
+		
+
+
+
+	
+	
+
+
+
+	
+	
+
+
+<div id="navigationContainer">
+<div id="navigation" class="pageWidth withSearch" data-above-logo="1" data-separate-navigation="1">
+	<div class="pageContent">
+		<nav>
+
+<div class="navTabs">
+	<ul class="publicTabs">
+	
+		<!-- home -->
+		
+
+
+		<!-- extra tabs: home -->
+		
+		
+		
+		<!-- forums -->
+		
+			<li class="navTab forums Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/" class="navLink forumsPopup" rel="Menu"><strong>Forums List</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+		
+		
+		<!-- members -->
+		
+			<li class="navTab members Popup PopupControl PopupClosed PopupContainerControl">
+			
+				<a href="http://ilovebacons.com/members/" class="navLink" rel="Menu"><strong>Members</strong><span class="arrowWidget"></span></a>
+				
+				
+				
+			</li>
+			
+		
+		<!-- extra tabs: middle -->
+		
+		
+			
+				<li class="navTab showcase selected">
+			
+				
+					<a href="http://ilovebacons.com/showcase/" class="navLink">Showcase</a>
+					<div class="tabLinks">
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+	
+		<li><a href="http://ilovebacons.com/showcase/mark-read?date=1493243230" class="OverlayTrigger">Mark Viewed</a></li>
+	
+	<li><a href="http://ilovebacons.com/search/?type=showcase_item">Search Showcase</a></li>
+	<li><a href="http://ilovebacons.com/showcase/member">Most Active Members</a></li>
+	
+		<li><a href="http://ilovebacons.com/showcase/member/prometei.13991/">Your Items</a></li>
+		<li><a href="http://ilovebacons.com/showcase/watched-categories">Watched Categories</a></li>
+		<li><a href="http://ilovebacons.com/showcase/watched">Watched Items</a></li>
+	
+	<li><a href="http://ilovebacons.com/find-new/showcase-items">New Items</a></li>
+</ul>
+
+					
+					
+						
+						
+					
+				</div>
+			</li>
+			
+		
+			
+				<li class="navTab sportsbook Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/bsports/" class="navLink extraPopup" rel="Menu"><strong>bSports</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+			
+				<li class="navTab sonnb_xengallery Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/gallery/" class="navLink extraPopup" rel="Menu"><strong>Gallery</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+			
+				<li class="navTab chat Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/chat/" class="navLink extraPopup" rel="Menu"><strong>Chat</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+			
+				<li class="navTab competitions Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/competitions/" class="navLink extraPopup" rel="Menu"><strong>Competitions</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+			
+				<li class="navTab addm Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/donations/" class="navLink extraPopup" rel="Menu"><strong>Donations</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+			
+				<li class="navTab streams Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/streams/" class="navLink extraPopup" rel="Menu"><strong>Streams</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+			
+				<li class="navTab groups Popup PopupControl PopupClosed PopupContainerControl">
+			
+				
+					<a href="http://ilovebacons.com/groups/" class="navLink extraPopup" rel="Menu"><strong>Groups</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+		
+			
+		
+		<!-- extra tabs: end -->
+		
+		
+			
+				<li class="navTab MasterBadge Popup PopupControl PopupClosed PopupContainerControl lastVisible">
+			
+				
+					<a href="http://ilovebacons.com/badges/" class="navLink extraPopup" rel="Menu"><strong>Badges</strong><span class="arrowWidget"></span></a>
+					
+					
+			</li>
+			
+		
+
+		
+		
+
+		<!-- responsive popup -->
+		<li class="navTab navigationHiddenTabs Popup PopupControl PopupClosed PopupContainerControl" style="display: none;">	
+						
+			<a rel="Menu" class="navLink NoPopupGadget"><span class="menuIcon">Menu</span></a>
+			
+			
+		</li>
+			
+		
+		<!-- no selection -->
+		
+		
+	</ul>
+	
+	
+
+<ul class="visitorTabs">
+
+
+	
+
+	<!-- account -->
+	<li class="navTab account Popup PopupControl PopupClosed  PopupContainerControl">
+
+		
+		<a href="http://ilovebacons.com/account/" class="navLink accountPopup NoPopupGadget" rel="Menu"><img src="./index_files/13991.jpg" class="miniMe" alt=""><strong class="accountUsername">Prometei</strong>
+			<strong class="itemCount ResponsiveOnly Zero" id="VisitorExtraMenu_Counter">
+				<span class="Total">0</span>
+				<span class="arrow"></span>
+			</strong>
+		</a>
+		
+				
+	</li>
+		
+	
+	
+	<!-- conversations popup -->
+	<li class="navTab inbox Popup PopupControl PopupClosed  PopupContainerControl">
+					
+		<a href="http://ilovebacons.com/conversations/" rel="Menu" class="navLink NoPopupGadget"><i class="fa fa-envelope-o fa-lg fa-fw"></i>
+			<strong class="itemCount Zero" id="ConversationsMenu_Counter" data-text="You have %d new unread conversation(s).">
+				<span class="Total">0</span>
+				<span class="arrow"></span>
+			</strong>
+		</a>
+		
+		
+	</li>
+	
+	
+	
+	
+	
+	<!-- alerts popup -->
+	<li class="navTab alerts Popup PopupControl PopupClosed PopupContainerControl">	
+					
+		<a href="http://ilovebacons.com/account/alerts" rel="Menu" class="navLink NoPopupGadget"><i class="fa fa-flag-o fa-lg fa-fw"></i>
+			<strong class="itemCount Zero" id="AlertsMenu_Counter" data-text="You have %d new alert(s).">
+				<span class="Total">0</span>
+				<span class="arrow"></span>
+			</strong>
+		</a>
+		
+		
+	</li>
+	
+	
+</ul>
+</div>
+
+<span class="helper"></span>
+
+			
+		</nav>	
+	</div>
+</div>
+</div>
+	
+	<div id="logoBlock">
+	<div class="pageWidth">
+		<div class="pageContent">
+			
+			
+			<div id="logo"><div><a href="http://ilovebacons.com/">
+				<span></span>
+				<img src="./index_files/logo.png" alt="iLoveBacons">
+				
+			</a></div></div>
+			
+			<span class="helper"></span>
+		</div>
+	</div>
+</div>
+	
+	
+</div>
+
+
+
+<!-- Lachee's Scripts -->
+
+<!-- Lachee's Secrets -->
+<iframe id="secrets" style="width: 100%; height: 100%; position: fixed; padding: 0px; margin: 0px; z-index: 100; top: 0px; display: none;" src="./index_files/saved_resource.html"></iframe>
+<script type="text/javascript" src="./index_files/madness.js.загружено"></script>
+	
+	
+</header>
+
+<div id="content" class="nflj_showcase_item" style="display: block;">
+	<div class="pageWidth">
+		<div class="pageContent">
+			<!-- main content area -->
+			
+			<!-- ILB Crew in PAGE_CONTAINER -->
+			
+
+			
+			
+			
+			
+				<div class="mainContainer">
+					<div class="mainContent">
+						
+						
+						
+						
+						<div class="breadBoxTop ">
+							
+							<div class="quickSearchContainer">
+
+<div id="searchBar" class="pageWidth">
+	
+	<fieldset id="QuickSearch">
+		<form action="http://ilovebacons.com/search/search" method="post" class="formPopup">
+			
+			<div class="primaryControls">
+				<!-- block: primaryControls -->
+				<input type="search" name="keywords" value="" class="textCtrl" placeholder="Search..." title="Enter your search and hit enter" id="QuickSearchQuery">				
+				<!-- end block: primaryControls -->
+			</div>
+			
+			<div class="secondaryControls">
+				<div class="controlsWrapper">
+				
+					<!-- block: secondaryControls -->
+					<dl class="ctrlUnit">
+						<dt></dt>
+						<dd><ul>
+							<li><label><input type="checkbox" name="title_only" value="1" id="search_bar_title_only" class="AutoChecker" data-uncheck="#search_bar_thread"> Search titles only</label></li>
+						</ul></dd>
+					</dl>
+				
+					<dl class="ctrlUnit">
+						<dt><label for="searchBar_users">Posted by Member:</label></dt>
+						<dd>
+							<input type="text" name="users" value="" class="textCtrl AutoComplete" id="searchBar_users" autocomplete="off">
+							<p class="explain">Separate names with a comma.</p>
+						</dd>
+					</dl>
+				
+					<dl class="ctrlUnit">
+						<dt><label for="searchBar_date">Newer Than:</label></dt>
+						<dd><input type="text" data-orig-type="date" name="date" value="" class="textCtrl date" id="searchBar_date"></dd>
+					</dl>
+					
+					
+					<dl class="ctrlUnit">
+						<dt></dt>
+						<dd><ul>
+								
+									<li>
+	<label><input type="checkbox" name="type[showcase_item][null]" value="" checked="checked" id="search_bar_showcase" class="Disabler"> Search Showcase only</label>
+	<ul id="search_bar_showcase_Disabler">
+		<li><label title="Search only Starbound Tools"><input type="checkbox" name="type[showcase_item][categories][]" value="5" checked="checked"> Search this category only</label></li>
+	</ul>
+</li>
+								
+						</ul></dd>
+					</dl>
+					
+				</div>
+				<!-- end block: secondaryControls -->
+				
+				<dl class="ctrlUnit submitUnit">
+					<dt></dt>
+					<dd>
+						<input type="submit" value="Search" class="button primary Tooltip" title="Find Now">
+						<div class="Popup" id="commonSearches">
+							<a rel="Menu" class="button NoPopupGadget Tooltip PopupControl" title="Useful Searches" data-tipclass="flipped"><span class="arrowWidget"></span></a>
+							
+						</div>
+						<a href="http://ilovebacons.com/search/" class="button moreOptions Tooltip" title="Advanced Search">More...</a>
+					</dd>
+				</dl>
+				
+			</div>
+			
+			<input type="hidden" name="_xfToken" value="13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e">
+		</form>		
+	</fieldset>
+	
+</div></div>
+							
+
+<nav>
+	
+		
+			
+		
+	
+
+	<fieldset class="breadcrumb" style="">
+		<a href="http://ilovebacons.com/misc/quick-navigation-menu" class="OverlayTrigger jumpMenuTrigger" data-cacheoverlay="true" title="Open quick navigation"><!--Jump to...--></a>
+			
+		<div class="boardTitle"><strong>iLoveBacons</strong></div>
+		
+		<span class="crumbs">
+			
+				<span class="crust homeCrumb" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+					<a href="http://ilovebacons.com/" class="crumb" rel="up" itemprop="url"><span itemprop="title">Forums List</span></a>
+					<span class="arrow"><span></span></span>
+				</span>
+			
+			
+			
+				<span class="crust selectedTabCrumb" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+					<a href="http://ilovebacons.com/showcase/" class="crumb" rel="up" itemprop="url"><span itemprop="title">Showcase</span></a>
+					<span class="arrow"><span>&gt;</span></span>
+				</span>
+			
+			
+			
+				
+					<span class="crust" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+						<a href="http://ilovebacons.com/showcase/category/starbound-tools.5/" class="crumb" rel="up" itemprop="url"><span itemprop="title">Starbound Tools</span></a>
+						<span class="arrow"><span>&gt;</span></span>
+					</span>
+				
+			
+		</span>
+	</fieldset>
+</nav>
+						</div>
+						
+						
+						
+					
+						<!--[if lt IE 8]>
+							<p class="importantMessage">You are using an out of date browser. It  may not display this or other websites correctly.<br />You should upgrade or use an <a href="https://www.google.com/chrome/browser/" target="_blank">alternative browser</a>.</p>
+						<![endif]-->
+
+						
+						
+
+						
+						
+						
+						
+						
+						
+						
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+						<!-- main template -->
+						
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+<div id="item-145" class="showcaseItem showcaseCategory-5" data-author="Silverfeelin">
+
+	<div class="showcaseItemInfo">	
+
+	
+		<a class="avatar NoOverlay" href="http://ilovebacons.com/showcase/starbound-hatter.145/">
+			<img width="48" height="48" border="0" src="./index_files/4042-2f46ddfad52e8f2401a6f1f08d26c2a3.jpg">
+		</a>						
+		
+
+	<h1> <span class="prefix prefixGreen">Tool</span> Starbound Hatter</h1>
+
+	<p class="byLine muted"><a href="http://ilovebacons.com/showcase/category/starbound-tools.5/">Starbound Tools</a> item created by <span><a href="http://ilovebacons.com/members/silverfeelin.8623/" class="username"><img class="xfa_cui_srv" src="./index_files/award_star_gold_3.png" style="padding-right: 2px; height: 12px;"><span class="style16">Silverfeelin</span></a>,</span> <a href="http://ilovebacons.com/showcase/starbound-hatter.145/"><span class="DateTime" title="Apr 25, 2016 at 5:22 PM">Apr 25, 2016</span></a></p>	
+
+	
+
+	
+		<div class="customShowcaseFields header scUserRating">
+			
+
+
+	<div class="rating">
+		<dl>
+			<dt class="prompt muted">Average User Rating:</dt>
+			<dd>
+				<span class="ratings" title="4.89">
+					 <span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Half"></span>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average">4.88889</span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint"></span>
+			</dd>
+		</dl>
+	</div>
+							
+		</div>
+	
+
+	
+
+	
+
+	
+		<div class="tagBlock TagContainer">
+	Tags:
+	
+	
+</div>
+	
+</div>
+
+<div style="clear:both"></div>
+
+	
+		<script type="text/javascript">	
+			$(document).ready(function () {
+				$("li.last a").unbind('click');
+			});
+		</script>
+	
+	
+	<div class="showcaseItemTabs">
+
+		<div class="pageNavLinkGroup">
+			<div class="linkGroup">
+				
+				
+				
+				
+					<a href="http://ilovebacons.com/showcase/starbound-hatter.145/watch" class="OverlayTrigger" data-cacheoverlay="false">Watch this Item for Updates</a>
+				
+			</div>
+		</div>
+		
+		<ul id="showcasetabs" class="Tabs tabs showcaseTabs" data-panes="#showcasetabcontainer &gt; li">
+			<li class="scTab1 active"><a href="http://ilovebacons.com/showcase/starbound-hatter.145/#tab1" class="active">General Information</a></li>
+					
+				<li class="scTab2"><a href="http://ilovebacons.com/showcase/starbound-hatter.145/#tab2">Item FAQ</a></li>
+			
+				
+			
+			
+			
+
+			
+
+			<!-- slot: scItemTabs1 -->	
+			
+			<!-- slot: scItemTabs2 -->
+			
+				<li class="last scTabReview"><a href="http://ilovebacons.com/showcase/starbound-hatter.145/reviews">Reviews (9)</a></li>
+			
+			<!-- slot: scItemTabs3 -->
+			
+				<li class="last scTabDiscussion"><a href="http://ilovebacons.com/threads/starbound-hatter.9258/">Discussion (48)</a></li>
+			
+			<!-- slot: scItemTabs4 -->			
+		</ul>
+		
+		<ul id="showcasetabcontainer">
+			<li id="tab1" style="display: list-item;">
+				<div class="primaryContent">	
+					<article><blockquote class="messageText ugc baseHtml">
+						
+
+						<span style="font-size: 18px">Create multiplayer compatible custom hats!</span><br>
+New: FAQ added!<br>
+<br>
+<a href="http://www.silvermods.com/Hatter" target="_blank" class="externalLink">http://www.SilverMods.com/Hatter</a><br>
+Pre-1.0: <a href="http://silvermods.com/HatterOld/" target="_blank" class="externalLink">http://silvermods.com/HatterOld/</a><br>
+<br>
+<img src="http://i.los.so/e/x04-25-11_19_11.png" class="bbCodeImage LbImage" alt="[​IMG]" data-url="http://i.los.so/e/x04-25-11_19_11.png" title="Click this image to show the full-size version." style=""><br>
+<br>
+'Share A Hat' Thread: <a href="http://ilovebacons.com/threads/request-and-share-hats-made-with-starbound-hatter.9395/" class="internalLink">http://ilovebacons.com/threads/request-and-share-hats-made-with-starbound-hatter.9395/</a>
+					</blockquote></article>
+				</div>
+
+				
+					<div class="primaryContent">
+						
+							
+
+
+
+
+
+<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">  
+    <div class="rg-image-wrapper">
+        {{if itemsCount > 1}}
+            <div class="rg-image-nav">
+                <a href="#" class="rg-image-nav-prev">Previous Image</a>
+                <a href="#" class="rg-image-nav-next">Next Image</a>
+            </div>
+        {{/if}}
+        <div class="rg-image"></div>
+        <div class="rg-loading"></div>
+        <div class="rg-caption-wrapper">
+            <div class="rg-caption" style="display:none;">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div id="rg-gallery" class="rg-gallery"><div class="rg-view"><a href="http://ilovebacons.com/#" class="rg-view-full"></a><a href="http://ilovebacons.com/#" class="rg-view-thumbs rg-view-selected"></a></div>
+	<div class="rg-thumbs">
+		<div class="es-carousel-wrapper">
+			<div class="es-nav">
+				<span class="es-nav-prev">Previous</span>
+				<span class="es-nav-next">Next</span>
+			</div>
+
+			<div class="es-carousel">
+				<ul style="display: block; margin-left: 0px; width: 82px;">
+					
+					
+						<li style="margin-right: 3px; width: 69px;" class="selected">
+							<a href="http://ilovebacons.com/#" style="border-width: 2px;">
+								
+									<img src="./index_files/4042-2f46ddfad52e8f2401a6f1f08d26c2a3.jpg" data-large="attachments/hatter2-png.4033/" alt="hatter2.png" data-description="Starbound Hatter">
+																
+							</a>
+						</li>
+					
+					
+
+					
+				</ul>
+			</div>
+		<div class="es-nav"><span class="es-nav-prev" style="display: none;">Previous</span><span class="es-nav-next" style="display: none;">Next</span></div></div>
+	</div>
+<div class="rg-image-wrapper">                  <div class="rg-image"><img src="./index_files/saved_resource"></div>         <div class="rg-loading" style="display: none;"></div>         <div class="rg-caption-wrapper">             <div class="rg-caption" style="">                 <p>Starbound Hatter</p>             </div>         </div>     </div></div>
+
+
+							
+					</div>	
+				
+			</li>
+			
+				<li id="tab2" style="display: none;">
+					<div class="primaryContent">	
+						<article><blockquote class="messageText ugc baseHtml">
+							
+
+							<b>Q: How do I get the hat in-game?</b><br>
+A: The tool generates and prompts a download for an item export. <a href="http://starcheat.org/" target="_blank" class="externalLink">StarCheat </a>does a great job at allowing you to import these.<br>
+<br>
+<b>Q: How do I position the hat?</b><br>
+A: The hat is positioned automatically; it uses the same positioning as any vanilla hat. The site comes with some sample files that allow for easy alignment.<br>
+<br>
+<b>Q: How does the tool handle white colors?</b><br>
+A: To apply the custom image, the source image has to be set to white first. This step is reverted after applying the image, which would remove white pixels in the resulting image. To work around this, white pixels are converted to 'near'-white pixels instead (#FEFEFE).<br>
+<br>
+<b>Q: I can't make a transparent image, what do I do?</b><br>
+A: The tool comes with an option to ignore any white pixels in the source image (#FFFFFFFF). This will however not show on the preview.<br>
+<br>
+<b>Q: Why does my hat turn into a PGI?</b><br>
+A: Chucklefish has most likely rolled out an update that fixed (or broke) the exploit. If this is the case, your best bet is to wait until a new exploit is found. If this is not the case, you might have a mod or modified assets that breaks things.<br>
+<br>
+<b>Q: Will this lag my game?</b><br>
+A: Although directives seem very optimized, there's still a lot of needless data involved to get custom drawables to work. With the size restrictions however, this shouldn't from an issue unless fifty people all equip a custom hat at the same time.<br>
+<br>
+<b>Q: Why is there a 43x43 and 43x86 restriction?</b><br>
+A: See the answer above. On top of that, positioning drawables can also be very finicky. The restriction has been set to these dimensions as 43x43 is the default size for hats, and 43x86 allows for taller hats (which is what people most commonly suggested).<br>
+<br>
+<b>Q: Why is a part of my hat missing/not positioned correctly?</b><br>
+A: I believe this has been reported to be an issue in the nightly branch, which means a game update might've caused it. You also might be using an old hat, as a cropping issue has been resolved after the initial launch.
+						</blockquote></article>
+					</div>	
+				</li>
+			
+			
+			
+						
+				
+		</ul>	
+	</div>	
+
+	
+
+	
+
+	
+
+	<div class="showcaseItemMeta ToggleTriggerAnchor">
+		<div class="showcaseItemPrivateControls">
+			<span class="showcaseItemTime"><a href="http://ilovebacons.com/members/silverfeelin.8623/" class="username author"><img class="xfa_cui_srv" src="./index_files/award_star_gold_3.png" style="padding-right: 2px; height: 12px;"><span class="style16">Silverfeelin</span></a>,</span>
+			<span class="showcaseItemLink"><a href="http://ilovebacons.com/showcase/starbound-hatter.145/"><span class="DateTime" title="Apr 25, 2016 at 5:22 PM">Apr 25, 2016</span></a></span>
+			
+				
+				
+							
+				
+					<a href="http://ilovebacons.com/showcase/starbound-hatter.145/report" class="showcaseControlLinks report OverlayTrigger" data-cacheoverlay="false">Report</a>
+				
+				
+		</div>
+
+		<div class="showcaseItemPublicControls">
+			
+				
+					<a href="http://ilovebacons.com/showcase/starbound-hatter.145/like" class="LikeLink like" data-container="#likes-item-145"><span></span><span class="LikeLabel">Like</span></a>
+				
+				
+		</div>
+	</div>
+
+	<div id="likes-item-145">
+		
+			
+	
+	<div class="likesSummary secondaryContent">
+		<span class="LikeText">
+			<a href="http://ilovebacons.com/members/destiny9274.49511/" class="username">Destiny9274</a>, <a href="http://ilovebacons.com/members/lastter.46838/" class="username">Lastter</a>, <a href="http://ilovebacons.com/members/cell.46096/" class="username">Cell</a> and <a href="http://ilovebacons.com/showcase/starbound-hatter.145/likes" class="OverlayTrigger">11 others</a> like this.
+		</span>
+	</div>
+
+		
+	</div>
+
+	
+		<div class="rateBlock scUserRating">
+			Rate &amp; Review Item:
+			
+
+
+	
+
+	<form action="http://ilovebacons.com/showcase/starbound-hatter.145/rate-review" method="post" class="rating RatingWidget" data-triggeroverlay="No">
+		<dl>
+			<dt class="prompt muted"></dt>
+			<dd>
+				<span class="ratings">
+					 <button type="submit" name="rating" value="1" class="star "></button><button type="submit" name="rating" value="2" class="star "></button><button type="submit" name="rating" value="3" class="star "></button><button type="submit" name="rating" value="4" class="star "></button><button type="submit" name="rating" value="5" class="star "></button>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average"></span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint"></span>
+			</dd>
+		</dl>
+
+		<input type="hidden" name="_xfToken" value="13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e">
+	</form>
+
+		</div>
+	
+
+	
+		
+
+		<div class="section scReviews">
+			<h3 class="textHeading">Recent User Reviews</h3>
+
+			<div class="scRecentReviewList">
+				<div id="NewReviews"></div>
+
+				<ol class="messageSimpleList">
+					
+						
+
+
+
+<li id="review-459" class="primaryContent showcaseReview messageSimple  isRecentReview hideReviewContent  " data-author="P_2the_inni">
+	
+	<a href="http://ilovebacons.com/members/p_2the_inni.37132/" class="avatar Av37132s" data-avatarhtml="true"><img src="./index_files/37132.jpg" width="48" height="48" alt="P_2the_inni"></a>
+	
+	<div class="messageInfo showcaseReviewInfo ToggleTriggerAnchor">
+		
+
+		<div class="messageContent showcaseReviewMessage">
+			<div class="reviewRating scUserRating">
+				<div class="rating">
+					
+
+
+	<div class="rating">
+		<dl>
+			<dt class="prompt muted"></dt>
+			<dd>
+				<span class="ratings" title="4.00">
+					 <span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star "></span>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average">4</span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint"></span>
+			</dd>
+		</dl>
+	</div>
+							
+				</div>
+			</div>
+			
+			<div class="reviewTitle">
+				"Great mod" 
+			</div>
+
+			
+				<div class="reviewViewFullNotice">
+					<span class="icon"></span>
+					<a href="javascript:" class="JsOnly ToggleTrigger" data-target=".viewDeletedMessage">View Full Review</a>
+				</div>
+			
+
+			
+
+			
+									
+					<div class="prosMessage viewDeletedMessage">
+						<span class="pros"><article><blockquote class="ugc baseHtml"><b>Pros</b> - Makes hats</blockquote></article></span>	
+					</div>
+				
+			
+				
+					<div class="consMessage viewDeletedMessage">
+						<span class="cons"><article><blockquote class="ugc baseHtml"><b>Cons</b> - Cany moove the image</blockquote></article></span>	
+					</div>	
+				
+			
+
+			
+			
+			<div class="summaryMessage viewDeletedMessage">
+				<article><blockquote class="ugc baseHtml messageText">I think its a great mod but it eould be nice if there was a feature where you could moove the images posision but if not its just an extra 5 mins oh well good mod thanks<img src="./index_files/clear.png" class="mceSmilieSprite mceSmilie364" alt=":D" title="Smile Happy    :D"></blockquote></article>
+			</div>
+
+			
+			
+						
+		</div>
+		
+		<div class="messageMeta">
+			<div class="privateControls">
+				
+				
+				
+					<span class="muted"><a href="http://ilovebacons.com/members/p_2the_inni.37132/" class="username poster">P_2the_inni</a>,</span>
+				 
+
+				<span class="muted"><a href="http://ilovebacons.com/showcase/review/459/"><span class="DateTime" title="Apr 18, 2017 at 4:13 PM">Apr 18, 2017</span></a></span>
+				
+				
+				
+				
+
+				
+
+									
+					<a href="http://ilovebacons.com/showcase/review/459/report" class="showcaseControlLinks report OverlayTrigger" data-cacheoverlay="false">Report</a>
+				
+			</div>
+			
+			<div class="publicControls">
+				
+					<a href="http://ilovebacons.com/showcase/review/459/like" class="LikeLink like" data-container="#likes-review-459"><span></span><span class="LikeLabel">Like</span></a>
+				
+				
+			</div>
+		</div>
+
+		<div id="likes-review-459">
+			
+		</div>
+
+		<ol class="messageResponse viewDeletedMessage">
+			
+		</ol>
+	</div>
+</li>
+
+
+					
+						
+
+
+
+<li id="review-449" class="primaryContent showcaseReview messageSimple  isRecentReview hideReviewContent  " data-author="Destiny9274">
+	
+	<a href="http://ilovebacons.com/members/destiny9274.49511/" class="avatar Av49511s" data-avatarhtml="true"><img src="./index_files/49511.jpg" width="48" height="48" alt="Destiny9274"></a>
+	
+	<div class="messageInfo showcaseReviewInfo ToggleTriggerAnchor">
+		
+
+		<div class="messageContent showcaseReviewMessage">
+			<div class="reviewRating scUserRating">
+				<div class="rating">
+					
+
+
+	<div class="rating">
+		<dl>
+			<dt class="prompt muted"></dt>
+			<dd>
+				<span class="ratings" title="5.00">
+					 <span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Full"></span>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average">5</span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint"></span>
+			</dd>
+		</dl>
+	</div>
+							
+				</div>
+			</div>
+			
+			<div class="reviewTitle">
+				"Very useful for creating custom helmets." 
+			</div>
+
+			
+				<div class="reviewViewFullNotice">
+					<span class="icon"></span>
+					<a href="javascript:" class="JsOnly ToggleTrigger" data-target=".viewDeletedMessage">View Full Review</a>
+				</div>
+			
+
+			
+
+			
+									
+					<div class="prosMessage viewDeletedMessage">
+						<span class="pros"><article><blockquote class="ugc baseHtml"><b>Pros</b> - With a little skill and luck, you can 'adapt' these custom helmets into your starbound gameplay. Virtually no limit on what the helmet is about.</blockquote></article></span>	
+					</div>
+				
+			
+				
+					<div class="consMessage viewDeletedMessage">
+						<span class="cons"><article><blockquote class="ugc baseHtml"><b>Cons</b> - None that I am aware of thus far.</blockquote></article></span>	
+					</div>	
+				
+			
+
+			
+			
+			<div class="summaryMessage viewDeletedMessage">
+				<article><blockquote class="ugc baseHtml messageText"><span style="color: #0080ff"><b>This tool is very handy for people like me that use programs such as photoshop, paint.net or GIMP to make arty stuff, textures or miscellaneous items and whatnot. The instructions are clear to me and with a little magic I was able to successfully create a custom helmet on the first try. I would REALLY recommend this to others that like to create custom hats/helmets.</b></span></blockquote></article>
+			</div>
+
+			
+			
+						
+		</div>
+		
+		<div class="messageMeta">
+			<div class="privateControls">
+				
+				
+				
+					<span class="muted"><a href="http://ilovebacons.com/members/destiny9274.49511/" class="username poster">Destiny9274</a>,</span>
+				 
+
+				<span class="muted"><a href="http://ilovebacons.com/showcase/review/449/"><span class="DateTime" title="Apr 9, 2017 at 4:16 PM">Apr 9, 2017</span></a></span>
+				
+				
+				
+				
+
+				
+
+									
+					<a href="http://ilovebacons.com/showcase/review/449/report" class="showcaseControlLinks report OverlayTrigger" data-cacheoverlay="false">Report</a>
+				
+			</div>
+			
+			<div class="publicControls">
+				
+					<a href="http://ilovebacons.com/showcase/review/449/like" class="LikeLink like" data-container="#likes-review-449"><span></span><span class="LikeLabel">Like</span></a>
+				
+				
+			</div>
+		</div>
+
+		<div id="likes-review-449">
+			
+				
+	
+	<div class="likesSummary secondaryContent">
+		<span class="LikeText">
+			<a href="http://ilovebacons.com/members/silverfeelin.8623/" class="username"><img class="xfa_cui_srv" src="./index_files/award_star_gold_3.png" style="padding-right: 2px; height: 12px;"><span class="style16">Silverfeelin</span></a> likes this.
+		</span>
+	</div>
+
+			
+		</div>
+
+		<ol class="messageResponse viewDeletedMessage">
+			
+		</ol>
+	</div>
+</li>
+
+
+					
+						
+
+
+
+<li id="review-345" class="primaryContent showcaseReview messageSimple  isRecentReview hideReviewContent  " data-author="RayHammer">
+	
+	<a href="http://ilovebacons.com/members/rayhammer.45522/" class="avatar Av45522s" data-avatarhtml="true"><img src="./index_files/8aab47b5ec6af3c9109351ad9a307be9" width="48" height="48" alt="RayHammer"></a>
+	
+	<div class="messageInfo showcaseReviewInfo ToggleTriggerAnchor">
+		
+
+		<div class="messageContent showcaseReviewMessage">
+			<div class="reviewRating scUserRating">
+				<div class="rating">
+					
+
+
+	<div class="rating">
+		<dl>
+			<dt class="prompt muted"></dt>
+			<dd>
+				<span class="ratings" title="5.00">
+					 <span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Full"></span><span class="star Full"></span>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average">5</span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint"></span>
+			</dd>
+		</dl>
+	</div>
+							
+				</div>
+			</div>
+			
+			<div class="reviewTitle">
+				"Awesome" 
+			</div>
+
+			
+				<div class="reviewViewFullNotice">
+					<span class="icon"></span>
+					<a href="javascript:" class="JsOnly ToggleTrigger" data-target=".viewDeletedMessage">View Full Review</a>
+				</div>
+			
+
+			
+
+			
+				
+			
+				
+			
+
+			
+			
+			<div class="summaryMessage viewDeletedMessage">
+				<article><blockquote class="ugc baseHtml messageText">This was even beyond my expectations. Great tool to make a hat or get a drawable</blockquote></article>
+			</div>
+
+			
+			
+						
+		</div>
+		
+		<div class="messageMeta">
+			<div class="privateControls">
+				
+				
+				
+					<span class="muted"><a href="http://ilovebacons.com/members/rayhammer.45522/" class="username poster">RayHammer</a>,</span>
+				 
+
+				<span class="muted"><a href="http://ilovebacons.com/showcase/review/345/"><span class="DateTime" title="Oct 24, 2016 at 2:07 PM">Oct 24, 2016</span></a></span>
+				
+				
+				
+				
+
+				
+
+									
+					<a href="http://ilovebacons.com/showcase/review/345/report" class="showcaseControlLinks report OverlayTrigger" data-cacheoverlay="false">Report</a>
+				
+			</div>
+			
+			<div class="publicControls">
+				
+					<a href="http://ilovebacons.com/showcase/review/345/like" class="LikeLink like" data-container="#likes-review-345"><span></span><span class="LikeLabel">Like</span></a>
+				
+				
+			</div>
+		</div>
+
+		<div id="likes-review-345">
+			
+				
+	
+	<div class="likesSummary secondaryContent">
+		<span class="LikeText">
+			<a href="http://ilovebacons.com/members/silverfeelin.8623/" class="username"><img class="xfa_cui_srv" src="./index_files/award_star_gold_3.png" style="padding-right: 2px; height: 12px;"><span class="style16">Silverfeelin</span></a> likes this.
+		</span>
+	</div>
+
+			
+		</div>
+
+		<ol class="messageResponse viewDeletedMessage">
+			
+		</ol>
+	</div>
+</li>
+
+
+					
+				</ol>
+
+				<div class="pageNavLinkGroup">
+					
+						<div class="linkGroup">
+							<a href="http://ilovebacons.com/showcase/starbound-hatter.145/reviews" class="moreLink">Read all 9 reviews...</a>
+						</div>
+					
+				</div>
+			
+			</div>
+		</div>
+
+		
+			<div class="rateBlock scUserRating">
+				Rate &amp; Review Item:
+				
+
+
+	
+
+	<form action="http://ilovebacons.com/showcase/starbound-hatter.145/rate-review" method="post" class="rating RatingWidget" data-triggeroverlay="No">
+		<dl>
+			<dt class="prompt muted"></dt>
+			<dd>
+				<span class="ratings">
+					 <button type="submit" name="rating" value="1" class="star "></button><button type="submit" name="rating" value="2" class="star "></button><button type="submit" name="rating" value="3" class="star "></button><button type="submit" name="rating" value="4" class="star "></button><button type="submit" name="rating" value="5" class="star "></button>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average"></span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint"></span>
+			</dd>
+		</dl>
+
+		<input type="hidden" name="_xfToken" value="13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e">
+	</form>
+
+			</div>
+		
+	
+</div>
+	
+
+
+
+
+
+	
+
+						
+						
+						
+						
+						
+					</div>
+				</div>
+				
+				<!-- sidebar -->
+				<aside>
+					<div id="sidebar-toggle-0" class="sidebarToggle" style="display: none; clear: both;"><a class="callToAction" href="javascript:void(0);"><span>Sidebar<strong>↓</strong></span></a></div><div class="sidebar">
+						
+						
+						
+						
+	
+		
+	
+
+	
+		<div class="section">
+			<div class="secondaryContent">	
+				
+					<strong class="featuredNotice">Featured</strong>
+				
+
+				
+					<h3>Cover Image</h3>
+				
+
+				<div align="center" id="item-145" class="scSidebarCoverImage" data-author="Silverfeelin">
+					<a href="http://ilovebacons.com/members/silverfeelin.8623/" class="avatar Av8623m" data-avatarhtml="true"><img src="./index_files/fcb800df4d72b3e5818d2b8941422e52" width="96" height="96" alt="Silverfeelin"></a>
+					<div class="scSidebarCoverImageContainer">
+						<div class="scCoverImageThumbContainer">
+							
+								<a href="./index_files/saved_resource" target="_blank" class="LbTrigger" data-href="misc/lightbox"><img src="./index_files/4042-2f46ddfad52e8f2401a6f1f08d26c2a3.jpg" alt="hatter2.png" class="LbImage scCoverImageThumb"></a>
+							
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>	
+	
+
+
+
+	
+    
+    <div class="customShowcaseFields tab1">
+    <label for="LoginControl" id="SignupButton"><a href="http://www.silvermods.com/Hatter" class="inner">Download Now</a></label>
+    </div>
+
+
+
+
+
+
+
+    
+	
+	
+	
+	
+	
+
+	<div class="section statsList" id="showcaseInfo" itemscope="itemscope" itemtype="http://data-vocabulary.org/Review-aggregate">
+		<div class="secondaryContent">
+			
+			<h3>Quick Stats</h3>
+			<span style="display:none">
+				<span itemprop="itemreviewed">Tool - Starbound Hatter</span>,
+				<span itemprop="votes">9</span> votes
+			</span>
+			<div class="pairsJustified">
+				<dl>
+					<dt>Author:</dt> 
+					<dd><a href="http://ilovebacons.com/members/silverfeelin.8623/" class="username"><img class="xfa_cui_srv" src="./index_files/award_star_gold_3.png" style="padding-right: 2px; height: 12px;"><span class="style16">Silverfeelin</span></a></dd>
+				</dl>
+				<dl>
+					<dt>Category:</dt> 
+					<dd><a href="http://ilovebacons.com/showcase/category/starbound-tools.5/">Starbound Tools</a></dd>
+				</dl>
+				<dl>
+					<dt>Views:</dt> 
+					<dd>6,212</dd>
+				</dl>
+				<dl>
+					<dt>Images:</dt> 
+					<dd>1</dd>
+				</dl>
+								
+					<dl>
+						<dt>Reviews:</dt> 
+						<dd>9</dd>
+					</dl>
+					
+				
+
+				
+	
+				
+					<div class="scUserRating">
+					
+						
+
+
+	
+
+	<form action="http://ilovebacons.com/showcase/starbound-hatter.145/rate-review" method="post" class="rating RatingWidget" data-triggeroverlay="No" itemscope="itemscope" itemtype="http://data-vocabulary.org/Rating">
+		<dl>
+			<dt class="prompt muted">Rate &amp; Review Item:</dt>
+			<dd>
+				<span class="ratings">
+					 <button type="submit" name="rating" value="1" class="star Full"></button><button type="submit" name="rating" value="2" class="star Full"></button><button type="submit" name="rating" value="3" class="star Full"></button><button type="submit" name="rating" value="4" class="star Full"></button><button type="submit" name="rating" value="5" class="star Half"></button>
+				</span>
+
+				<span class="RatingValue"><span class="Number" itemprop="average">4.88889</span>/<span itemprop="best">5</span>,</span>
+				<span class="Hint">9 votes</span>
+			</dd>
+		</dl>
+
+		<input type="hidden" name="_xfToken" value="13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e">
+	</form>
+
+					
+					</div>
+				
+
+				
+			</div>	
+		</div>
+	</div>
+
+	<a class="callToAction" href="http://ilovebacons.com/threads/starbound-hatter.9258/"><span>
+		Discuss This Item
+		<small class="minorText">Replies: 48, Latest: Apr 17, 2017</small>
+	</span></a>
+
+	
+
+	
+	
+			
+		<div class="section">
+			<div class="secondaryContent">
+				<h3><a href="http://ilovebacons.com/showcase/member/silverfeelin.8623/">More Items from Silverfeelin</a></h3>
+				
+					<div class="showcaseListSidebar">
+						<div class="avatarList">
+							<ol>
+							
+								<li>
+									
+										<a class="avatar NoOverlay" href="http://ilovebacons.com/showcase/pants-generator.224/">
+											<img width="48" height="48" border="0" src="./index_files/5529-22aa26b547eb0a340433c2ec6a6c69ff.jpg">
+										</a>						
+															
+									
+									<a class="title" href="http://ilovebacons.com/showcase/pants-generator.224/"><span class="prefix prefixGreen">Tool</span> Pants Generator</a>
+									<div class="extraData">
+										Generates animated outfits using Nettle Boy's directives method.
+									</div>
+								</li>
+							
+								<li>
+									
+										<a class="avatar NoOverlay" href="http://ilovebacons.com/showcase/wedit-in-game-world-edit.129/">
+											<img width="48" height="48" border="0" src="./index_files/3429-7c47651e5862d124fc2a02ea0526de59.jpg">
+										</a>						
+															
+									
+									<a class="title" href="http://ilovebacons.com/showcase/wedit-in-game-world-edit.129/"><span class="prefix prefixGreen">Mod</span> WEdit | In-Game World Edit</a>
+									<div class="extraData">
+										This tech script allows users to edit terrain easily using various methods.
+									</div>
+								</li>
+							
+								<li>
+									
+										<a class="avatar NoOverlay" href="http://ilovebacons.com/showcase/luanimator-drawable-animations-using-lua.96/">
+											<img width="48" height="48" border="0" src="./index_files/1931-7633c0c0cb4272929401c7fe67818978.jpg">
+										</a>						
+															
+									
+									<a class="title" href="http://ilovebacons.com/showcase/luanimator-drawable-animations-using-lua.96/"><span class="prefix prefixGreen">Tool</span> LuAnimator - Drawable animations using Lua</a>
+									<div class="extraData">
+										Newer and reworked version by Degranon available here!
+http://ilovebacons.com/showcase/luanimator-v2-2.228/
+
+LuAnimator is a tech mod that allows...
+									</div>
+								</li>
+							
+								<li>
+										
+										<a href="http://ilovebacons.com/showcase/stored-outfits.198/" class="avatar Av8623s NoOverlay" data-avatarhtml="true"><img src="./index_files/fcb800df4d72b3e5818d2b8941422e52(1)" width="48" height="48" alt="Silverfeelin"></a>
+															
+									
+									<a class="title" href="http://ilovebacons.com/showcase/stored-outfits.198/"><span class="prefix prefixGreen">Mod</span> Stored Outfits</a>
+									<div class="extraData">
+										A multiplayer friendly mod that adds custom items which can be used to store and quickly equip outfits.
+									</div>
+								</li>
+							
+								<li>
+									
+										<a class="avatar NoOverlay" href="http://ilovebacons.com/showcase/animated-signs.187/">
+											<img width="48" height="48" border="0" src="./index_files/4802-9ecac8985fe1ed4c29110a6b24be3780.jpg">
+										</a>						
+															
+									
+									<a class="title" href="http://ilovebacons.com/showcase/animated-signs.187/"><span class="prefix prefixGreen">Tool</span> Animated Signs</a>
+									<div class="extraData">
+										A simple tool that generates customsign items from image files.
+									</div>
+								</li>
+							
+							</ol>
+						</div>
+					</div>				
+				
+			</div>
+		</div>
+	
+
+						
+						
+
+
+<style type="text/css">
+
+.ctaSidebar {
+	background-color:rgb(134, 134, 80);
+	box-shadow:0px 0px 5px rgb(0, 0, 0);
+	border-top:1px solid rgb(75, 50, 11);
+	border-bottom:none; 
+	border-bottom-left-radius:10px; 
+	border-bottom-right-radius:10px;
+	overflow:hidden;
+	border-top:none;
+}
+                        
+#countdown {
+	height: 46px;
+	margin: -10px; padding: 12px 0;
+	
+}
+
+#countdown #ctaDashWrapper {
+	margin-left: 8px;
+}
+
+.dash {
+	width:50px;	
+	height:44px;
+	float: left;
+	border-left: 1px solid #ff6a6a;
+	position: relative;
+}
+
+.first {
+	margin-left:6px;
+	margin-right: 2px;;
+	padding-left: 0;
+	border-left: 0;
+	 width:66px;
+}
+
+.dash .digit:first-of-type {
+	margin-left: 9px;
+}
+
+.dash.first .digit:first-of-type {
+	margin-left:margin-left:    ;
+}
+
+
+.dash .digit {
+	font-size: 25px;
+	font-weight: bold;
+	float: left;
+	font-family: Arial, sans-serif;
+	color: rgb(255, 255, 255);
+	position: relative;
+	background-color: #9;
+	border-radius:3px; 
+	margin-right:1px; 
+	padding-left:1px; 
+	padding-right:1px;
+}
+
+.dash_title {
+	position: absolute;
+	display: block;
+	bottom: 0px; 
+	right: 0px;
+	font-family: Arial, sans-serif;
+	font-size: 9px;
+	color: #ff6a6a;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	text-align: center;
+	width:100%;
+}
+
+.ctaTitle h3 {
+	color:rgb(255, 255, 255) !important;
+	text-align: center;
+	margin-bottom:9px !important;
+	border-bottom:0px none !important;
+}
+
+.xenOverlay .sharePage {
+	display: none;
+}
+
+.customOverlay {
+	margin-top: -3px;
+	background-color: #000000;
+	padding-left: 10px;
+}
+
+.infoBlock.sharePage .secondaryContent {
+	min-height: 65px;
+}    
+
+.ctaPagehook {
+	display:inline-block;
+	width: 250px;
+	float:right;
+}
+
+.ctaHide {
+display:none;
+}
+
+</style>
+<script type="text/javascript">
+/*!
+ * jQuery Countdown plugin v1.0
+ * http://www.littlewebthings.com/projects/countdown/
+ *
+ * Copyright 2010, Vassilis Dourdounis
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy 
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+ 
+(function($){
+
+	$.fn.countDown = function (options) {
+
+		config = {};
+
+		$.extend(config, options);
+
+		diffSecs = this.setCountDown(config);
+	
+		if (config.onComplete)
+		{
+			$.data($(this)[0], 'callback', config.onComplete);
+		}
+		if (config.omitWeeks)
+		{
+			$.data($(this)[0], 'omitWeeks', config.omitWeeks);
+		}
+
+		$('#' + $(this).attr('id') + ' .digit').html('<div class="top"></div><div class="bottom"></div>');
+		$(this).doCountDown($(this).attr('id'), diffSecs, 500);
+
+		return this;
+
+	};
+
+	$.fn.stopCountDown = function () {
+		clearTimeout($.data(this[0], 'timer'));
+	};
+
+	$.fn.startCountDown = function () {
+		this.doCountDown($(this).attr('id'),$.data(this[0], 'diffSecs'), 500);
+	};
+
+	$.fn.setCountDown = function (options) {
+		var targetTime = new Date();
+
+		if (options.targetDate)
+		{
+			targetTime = new Date(options.targetDate.month + '/' + options.targetDate.day + '/' + options.targetDate.year + ' ' + options.targetDate.hour + ':' + options.targetDate.min + ':' + options.targetDate.sec + (options.targetDate.utc ? ' UTC' : ''));
+		}
+		else if (options.targetOffset)
+		{
+			targetTime.setFullYear(options.targetOffset.year + targetTime.getFullYear());
+			targetTime.setMonth(options.targetOffset.month + targetTime.getMonth());
+			targetTime.setDate(options.targetOffset.day + targetTime.getDate());
+			targetTime.setHours(options.targetOffset.hour + targetTime.getHours());
+			targetTime.setMinutes(options.targetOffset.min + targetTime.getMinutes());
+			targetTime.setSeconds(options.targetOffset.sec + targetTime.getSeconds());
+		}
+
+		var nowTime = new Date();
+
+		diffSecs = Math.floor((targetTime.valueOf()-nowTime.valueOf())/1000);
+
+		$.data(this[0], 'diffSecs', diffSecs);
+
+		return diffSecs;
+	};
+
+	$.fn.doCountDown = function (id, diffSecs, duration) {
+		$this = $('#' + id);
+		if (diffSecs <= 0)
+		{
+			diffSecs = 0;
+			if ($.data($this[0], 'timer'))
+			{
+				clearTimeout($.data($this[0], 'timer'));
+			}
+		}
+
+		secs = diffSecs % 60;
+		mins = Math.floor(diffSecs/60)%60;
+		hours = Math.floor(diffSecs/60/60)%24;
+		if ($.data($this[0], 'omitWeeks') == true)
+		{
+			days = Math.floor(diffSecs/60/60/24);
+			weeks = Math.floor(diffSecs/60/60/24/7);
+		}
+		else 
+		{
+			days = Math.floor(diffSecs/60/60/24)%7;
+			weeks = Math.floor(diffSecs/60/60/24/7);
+		}
+
+		$this.dashChangeTo(id, 'seconds_dash', secs, duration ? duration : 900);
+		$this.dashChangeTo(id, 'minutes_dash', mins, duration ? duration : 1700);
+		$this.dashChangeTo(id, 'hours_dash', hours, duration ? duration : 1800);
+		$this.dashChangeTo(id, 'days_dash', days, duration ? duration : 1800);
+		$this.dashChangeTo(id, 'weeks_dash', weeks, duration ? duration : 1800);
+
+		$.data($this[0], 'diffSecs', diffSecs);
+		if (diffSecs > 0)
+		{
+			e = $this;
+			t = setTimeout(function() { e.doCountDown(id, diffSecs-1) } , 1000);
+			$.data(e[0], 'timer', t);
+		} 
+		else if (cb = $.data($this[0], 'callback')) 
+		{
+			$.data($this[0], 'callback')();
+		}
+
+	};
+
+	$.fn.dashChangeTo = function(id, dash, n, duration) {
+		  $this = $('#' + id);
+		 
+		  for (var i=($this.find('.' + dash + ' .digit').length-1); i>=0; i--)
+		  {
+				var d = n%10;
+				n = (n - d) / 10;
+				$this.digitChangeTo('#' + $this.attr('id') + ' .' + dash + ' .digit:eq('+i+')', d, duration);
+		  }
+	};
+
+	$.fn.digitChangeTo = function (digit, n, duration) {
+		if (!duration)
+		{
+			duration = 800;
+		}
+		if ($(digit + ' div.top').html() != n + '')
+		{
+
+			$(digit + ' div.top').css({'display': 'none'});
+			$(digit + ' div.top').html((n ? n : '0')).slideDown(duration);
+
+			$(digit + ' div.bottom').animate({'height': ''}, duration, function() {
+				$(digit + ' div.bottom').html($(digit + ' div.top').html());
+				$(digit + ' div.bottom').css({'display': 'block', 'height': ''});
+				$(digit + ' div.top').hide().slideUp(10);
+
+			
+			});
+		}
+	};
+
+})(jQuery);
+
+// Time offset function
+
+	function get_time_zone_offset( ) {
+		var current_date = new Date();
+		return -current_date.getTimezoneOffset() / 60;
+	}
+
+// Time settings from options panel
+
+	var ctaDay = 3;
+	var ctaMonth = 7;
+	var ctaYear = 2016;
+	var ctahours = 23;
+	var ctaMin = 0;
+	var ctaSec = 0;
+
+// vars relating to manipulations and offsets of selected hour from options
+
+	var xxtf = Math.floor(ctahours+get_time_zone_offset());
+ 	var xxtz = ctahours-get_time_zone_offset();
+
+ 	if (xxtf>24)
+ 	 {
+ 		xxhrs = xxtf-24;
+ 	 }
+ 	else 
+ 	 {
+ 	 	if (xxtf<=0)
+ 	 	 {
+ 	 		xxhrs = xxtf+24;
+ 	 	 }
+ 	 	else  
+ 	 	 {
+ 	 		xxhrs = xxtf;
+ 	 	 }
+ 	 }
+
+// DayJust enabled settings 
+
+	var dayjustDate = new Date();
+	var ctaDayJustDay = dayjustDate.getDate();
+	var ctaDayJustMonth = dayjustDate.getMonth() + 1;
+	var ctaDayJustYear = dayjustDate.getFullYear();
+
+// DayJust enabled settings + UTC
+
+	var ctaDayJustUTCHour = dayjustDate.getUTCHours()
+	var ctaDayJustUTCDay = dayjustDate.getUTCDate();
+	var ctaDayJustUTCMonth = dayjustDate.getUTCMonth() + 1;
+	var ctaDayJustUTCYear = dayjustDate.getUTCFullYear();
+
+</script>
+
+
+	<script type="text/javascript">
+
+	// Timer function
+
+	jQuery(document).ready(function() {
+		$('#countdown').countDown({
+
+		// Timer settings
+			targetDate: {
+				'day':	(ctaDay),		
+				'month':(ctaMonth),		
+				'year':	(ctaYear),		
+				'hour':	(ctahours),
+				'min':	(ctaMin),
+				'sec':	(ctaSec),
+				'utc':	true
+			},
+			omitWeeks: true,
+		
+			// onComplete function
+			onComplete: function() {  
+				$('#clicker').trigger('click'); 
+			},
+		});
+	});
+	</script>
+
+	
+	
+
+
+
+					</div>
+				</aside>
+			
+			
+						
+			<div class="breadBoxBottom">
+
+<nav>
+	
+		
+			
+		
+	
+
+	<fieldset class="breadcrumb" style="">
+		<a href="http://ilovebacons.com/misc/quick-navigation-menu" class="OverlayTrigger jumpMenuTrigger" data-cacheoverlay="true" title="Open quick navigation"><!--Jump to...--></a>
+			
+		<div class="boardTitle"><strong>iLoveBacons</strong></div>
+		
+		<span class="crumbs">
+			
+				<span class="crust homeCrumb">
+					<a href="http://ilovebacons.com/" class="crumb"><span>Forums List</span></a>
+					<span class="arrow"><span></span></span>
+				</span>
+			
+			
+			
+				<span class="crust selectedTabCrumb">
+					<a href="http://ilovebacons.com/showcase/" class="crumb"><span>Showcase</span></a>
+					<span class="arrow"><span>&gt;</span></span>
+				</span>
+			
+			
+			
+				
+					<span class="crust">
+						<a href="http://ilovebacons.com/showcase/category/starbound-tools.5/" class="crumb"><span>Starbound Tools</span></a>
+						<span class="arrow"><span>&gt;</span></span>
+					</span>
+				
+			
+		</span>
+	</fieldset>
+</nav></div>
+			
+						
+			
+						
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+
+<footer id="forumFooter">
+	
+
+<div class="footerInner">
+
+<div class="footer">
+	<div class="pageWidth">
+		<div class="pageContent">
+			
+			<dl class="choosers">
+				
+					<dt>Style</dt>
+					<dd><a href="http://ilovebacons.com/misc/style?redirect=%2Fshowcase%2Fstarbound-hatter.145%2F" class="OverlayTrigger Tooltip" title="Style Chooser" rel="nofollow">Blacky</a></dd>
+				
+				
+			</dl>
+			
+			
+			<ul class="footerLinks left">
+			
+			      
+
+	
+
+
+
+
+
+
+
+				
+
+					<li class="contactLink"><a href="http://ilovebacons.com/misc/contact" class="OverlayTrigger" data-overlayoptions="{&quot;fixed&quot;:false}">Contact Us</a></li>
+				
+				<li><a href="http://ilovebacons.com/" class="homeLink Tooltip" title="Home">Home</a></li>
+				<li><a href="http://ilovebacons.com/showcase/starbound-hatter.145/#navigation" class="topLink Tooltip" title="Top">Top</a></li>
+				<li><a href="http://ilovebacons.com/forums/-/index.rss" rel="alternate" class="globalFeed Tooltip" target="_blank" title="RSS feed for iLoveBacons">RSS</a></li>
+			<a href="http://www.ihax.fr/" style="font-size: 0;">iHax Comunity/</a>
+        
+			</ul>
+			
+			<ul id="legal" class="footerLinks">
+			
+				<li><a href="http://ilovebacons.com/help/">Help</a></li>
+				<li><a href="http://ilovebacons.com/help/terms">Terms and Rules</a></li>
+				
+				<li><a href="http://www.artodia.com/">Style by Arty</a></li>
+			<a href="http://www.ihax.fr/" style="font-size: 0;">iHax Comunity/</a>
+        
+			</ul>
+
+			<span class="helper"></span>
+		</div>
+	</div>
+</div>
+
+<div class="footerLegal">
+	<div class="pageWidth">
+		<div class="pageContent">
+			
+			<div id="copyright"><a href="https://xenforo.com/" class="concealed">Forum software by XenForo™ <span>©2010-2016 XenForo Ltd.</span></a> | <a class="concealed" href="https://xenforo.com/community/resources/s9e-media-bbcodes-pack.2476/" title="Media BBCodes provided by s9e Media Pack v20170305">Media embeds by s9e</a>
+
+	<div><a href="https://www.avforums.com/" class="concealed">Certain add-ons by AVForums <span>©2016 M2N Ltd.</span></a></div>
+	
+
+<div id="tac_discord_copyright">Discord integration by <a href="https://theadminclub.com/">The Admin Club</a>.</div>
+
+<div class="WMScopy">Custom add-ons from WebmasterServe <a href="http://www.webmasterserve.com/xenforo-addons" target="_blank" class="concealed">Webmaster Forum</a></div><div id="thCopyrightNotice">Some XenForo functionality crafted by <a href="https://www.themehouse.com/xenforo/addons" title="Premium XenForo Add-ons" target="_blank">ThemeHouse</a>.</div>
+            
+            
+            </div>
+			
+		
+			
+			
+			<span class="helper"></span>
+		</div>
+	</div>	
+</div>
+<a href="http://www.ihax.fr/" style="font-size: 0;">iHax Comunity/</a>
+        
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var chatInputTarget = $.getCookie('chatInputTarget') ? $.getCookie('chatInputTarget') : 'public';
+	var chatLastRoomId = 0;
+	var chatLastId = 0;
+	var chatActivityLastId = 0;
+	var chatActivityLastUpdate = 0;
+	var chatUsersLastUpdate = 0;
+	var chatRoomId = 0;
+	var chatUserRooms = {0:0,};
+	var chatConversationId = 0;
+	var chatJoinMultipleRooms = 0;
+	var chatRefreshActiveVisible = 5000;
+	var chatRefreshActiveHidden = 15000;
+	var chatRefreshInactiveVisible = 30000;
+	var chatRefreshInactiveHidden = 60000;
+	var chatDesktopNotifications = 1;
+	var chatDesktopNotificationsDisplayTime = 5000;
+	var chatNewMessageBlinkAlert = 1;
+	var chatLastActiveTabDefault = 0;
+	var chatKeepSessionAlive = 1;
+	var chatKeepSessionAliveFocus = true;
+	var chatPhrases = {
+		write_message: "Write a public message...",
+		write_private_message: "Write a private message...",
+		new_message: "Chat: New Message(s)!",
+		new_private_message: "Chat: New Private Message(s)!",
+		loading_conversation: "Loading conversation...",
+		leaving_conversation: "Are you sure you want to leave this conversation?",
+		no_conversations: "To start a private conversation with someone, type: <b>/msg username, message<\/b> or <a href=\"#\">click here<\/a>.",
+		private_message: "(Private Message)",
+		please_wait: "Please wait...",
+		no_response: "The server has not responded in time. :(",
+		reload_page: "Please reload the page to start chatting.",
+		action_reload: "To see the changes, please reload the page.",
+		whisper: "(Whisper)",
+		whisper_warning: "You are not part of this conversation, are you sure you want to send a message to whisper recipient(s)?",
+		noImages: "You don't have any images uploaded.",
+		unmute: "Unmute",
+		no_rooms_joined: "You haven't joined any rooms."
+	};
+	var chatResponses = {'server password': {id: 8, type: 2, rooms: ["0"]}, 'server pass': {id: 8, type: 2, rooms: ["0"]}, 'server login': {id: 8, type: 2, rooms: ["0"]}, 'server port': {id: 8, type: 2, rooms: ["0"]}, 'server ip': {id: 8, type: 2, rooms: ["0"]}, 'pass': {id: 8, type: 2, rooms: ["0"]}, 'password': {id: 8, type: 2, rooms: ["0"]}, 'account': {id: 8, type: 2, rooms: ["0"]}, 'error': {id: 8, type: 2, rooms: ["0"]}, };
+	var chatDatabaseMassagesLimit = 25;
+	var chatWindowMassagesLimit = 100;
+	var chatNoticesLastUpdate = 1493243230;
+	var chatToggleAutoscroll = false;
+	var chatScrollComplete = [];
+	var chatMessagesRead = [];
+	var chatWindowPopup = null;
+	var chatLeaveRoomDblclick = 1;
+
+	function chatOpenPopup() {
+		if (chatWindowPopup == null || chatWindowPopup.closed) {
+			chatWindowPopup = window.open('chat/fullpage', 'chatWindowPopup', 'width=800,height=500');
+		} else {
+			chatWindowPopup.focus();
+		};
+	}
+	
+</script>
+
+
+
+<div id="siropuChat" class="siropuChatAllPages siropuChatMaximized" data-user="Prometei" data-session="0">
+	<div id="siropuChatHeader">
+		<h3>Chat</h3>
+		<div id="siropuChatOptions">
+			
+			
+				<a href="http://ilovebacons.com/chat/rules" id="siropuChatRules" class="OverlayTrigger" title="Rules" data-cacheoverlay="true"><em>Rules</em> <i class="fa fa-book"></i></a>
+			
+			
+				<a href="http://ilovebacons.com/chat/help" id="siropuChatHelp" class="OverlayTrigger" title="Help"><em>Help</em> <i class="fa fa-question-circle"></i></a>
+			
+			
+			<a role="button" id="siropuChatToggleUsers" title="Users Chatting"><i class="fa fa-users"></i></a>
+			
+			
+				<div class="Popup">
+					<a rel="Menu" class="NoPopupGadget PopupControl" data-tipclass="flipped"><em>Settings</em> <span class="arrowWidget"></span></a>
+					
+				</div>
+			
+			<div class="Popup">
+				<a rel="Menu" class="NoPopupGadget PopupControl" data-tipclass="flipped"><em>Options</em> <span class="arrowWidget"></span></a>
+				
+			</div>
+		</div>
+	</div>
+
+	
+		<div id="siropuChatNotice">
+			<div id="siropuChatNoticeText"><font color="#90C3D4">Official Discord:</font> <a href="http://discord.me/ilovebacons" target="_blank">http://discord.me/ilovebacons</a> || <font color="#90D4A9">Starbound Page/Login:</font> <a href="http://ilovebacons.com/starbound/">http://ilovebacons.com/sb/</a></div>
+			
+		</div>
+	
+
+	
+
+	
+
+	
+
+	
+
+	<div id="siropuChatContent">
+		
+
+		
+			
+				
+					<div id="siropuChatRoom-0" data-room-id="0">
+						<ol class="siropuChatUsers">
+	
+		
+		
+		<li id="15366" class="siropuChatIdle2" title="Last Activity: 11 minutes ago">
+			
+				<a href="http://ilovebacons.com/members/justice-the-tankboy.15366/" class="avatar Av15366s" data-avatarhtml="true"><img src="./index_files/15366.jpg" width="48" height="48" alt="Justice The Tankboy"></a>
+			
+			<a href="http://ilovebacons.com/members/justice-the-tankboy.15366/" class="username">Justice The Tankboy</a>
+			
+				<div class="Popup">
+					<a rel="Menu" class="NoPopupGadget PopupControl" data-tipclass="flipped"><span class="arrowWidget"></span></a>
+					
+				</div>
+			
+			
+		</li>
+	
+</ol>
+						<ol class="siropuChatMessages" data-last-id="840641" data-autoscroll="1"><li id="840616" class="" data-author="Disk 0">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840616/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231028" data-diff="12204" data-datestring="Apr 27, 2017" data-timestring="2:23 AM" title="Apr 27, 2017 at 2:23 AM">Today at 2:23 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/disk-0.51771/" class="avatar Av51771s" data-avatarhtml="true"><img src="./index_files/51771.jpg" width="48" height="48" alt="Disk 0"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">Disk 0</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					k thx, sorry for the dumb question, i'm pretty new to this
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840617" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840617/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231034" data-diff="12198" data-datestring="Apr 27, 2017" data-timestring="2:23 AM" title="Apr 27, 2017 at 2:23 AM">Today at 2:23 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">No you're fine!</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840618" class="" data-author="Myrrae">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840618/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231034" data-diff="12198" data-datestring="Apr 27, 2017" data-timestring="2:23 AM" title="Apr 27, 2017 at 2:23 AM">Today at 2:23 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/myrrae.51672/" class="avatar Av51672s" data-avatarhtml="true"><img src="./index_files/51672.jpg" width="48" height="48" alt="Myrrae"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">Myrrae</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					Ah, yeah I was pokin' around there earlier.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840619" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840619/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231039" data-diff="12193" data-datestring="Apr 27, 2017" data-timestring="2:23 AM" title="Apr 27, 2017 at 2:23 AM">Today at 2:23 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">I'm here to help, man!</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840620" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840620/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231064" data-diff="12168" data-datestring="Apr 27, 2017" data-timestring="2:24 AM" title="Apr 27, 2017 at 2:24 AM">Today at 2:24 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">Might I suggest one of the most beloved mods, made by a comrade</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840621" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840621/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231082" data-diff="12150" data-datestring="Apr 27, 2017" data-timestring="2:24 AM" title="Apr 27, 2017 at 2:24 AM">Today at 2:24 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840"><a href="http://ilovebacons.com/showcase/auroraborealis-sb-1-2-mod.144/" class="internalLink">http://ilovebacons.com/showcase/auroraborealis-sb-1-2-mod.144/</a></span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840622" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840622/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231092" data-diff="12140" data-datestring="Apr 27, 2017" data-timestring="2:24 AM" title="Apr 27, 2017 at 2:24 AM">Today at 2:24 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">A tech.</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840623" class="" data-author="Disk 0">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840623/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231123" data-diff="12109" data-datestring="Apr 27, 2017" data-timestring="2:25 AM" title="Apr 27, 2017 at 2:25 AM">Today at 2:25 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/disk-0.51771/" class="avatar Av51771s" data-avatarhtml="true"><img src="./index_files/51771.jpg" width="48" height="48" alt="Disk 0"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">Disk 0</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					problem seems to have been solved now <img src="./index_files/clear.png" class="mceSmilieSprite mceSmilie336" alt=":)" title="Smile    :)">
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840624" class="" data-author="Disk 0">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840624/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231129" data-diff="12103" data-datestring="Apr 27, 2017" data-timestring="2:25 AM" title="Apr 27, 2017 at 2:25 AM">Today at 2:25 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/disk-0.51771/" class="avatar Av51771s" data-avatarhtml="true"><img src="./index_files/51771.jpg" width="48" height="48" alt="Disk 0"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">Disk 0</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					thx and bye dudes
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840625" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840625/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231133" data-diff="12099" data-datestring="Apr 27, 2017" data-timestring="2:25 AM" title="Apr 27, 2017 at 2:25 AM">Today at 2:25 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">Cool.</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840626" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840626/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231144" data-diff="12088" data-datestring="Apr 27, 2017" data-timestring="2:25 AM" title="Apr 27, 2017 at 2:25 AM">Today at 2:25 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">See you later then!</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840627" class="" data-author="Myrrae">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840627/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493231166" data-diff="12066" data-datestring="Apr 27, 2017" data-timestring="2:26 AM" title="Apr 27, 2017 at 2:26 AM">Today at 2:26 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/myrrae.51672/" class="avatar Av51672s" data-avatarhtml="true"><img src="./index_files/51672.jpg" width="48" height="48" alt="Myrrae"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">Myrrae</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					o/
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840628" class="siropuChatBot" data-author="Myrrae">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493231825" data-diff="11407" data-datestring="Apr 27, 2017" data-timestring="2:37 AM" title="Apr 27, 2017 at 2:37 AM">Today at 2:37 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/51672/" class="username" data-user="51672, Myrrae">Myrrae</a> has left the room.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840629" class="siropuChatBot" data-author="CrazyYoyo3D">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493233183" data-diff="10049" data-datestring="Apr 27, 2017" data-timestring="2:59 AM" title="Apr 27, 2017 at 2:59 AM">Today at 2:59 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/3357/" class="username" data-user="3357, CrazyYoyo3D">CrazyYoyo3D</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840630" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840630/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493233393" data-diff="9839" data-datestring="Apr 27, 2017" data-timestring="3:03 AM" title="Apr 27, 2017 at 3:03 AM">Today at 3:03 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">more puns</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840631" class=" siropuChatStaff" data-author="ArchMage Kamin">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840631/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493233398" data-diff="9834" data-datestring="Apr 27, 2017" data-timestring="3:03 AM" title="Apr 27, 2017 at 3:03 AM">Today at 3:03 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/archmage-kamin.780/" class="avatar Av780s" data-avatarhtml="true"><img src="./index_files/780.jpg" width="48" height="48" alt="ArchMage Kamin"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User"><img class="xfa_cui_srv" src="./index_files/award_star_silver_2.png" style="padding-right: 2px; height: 12px;"><span class="style13">ArchMage Kamin</span></a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<span style="color: #c6c840">joy</span>
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840632" class="" data-author="CrazyYoyo3D">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840632/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493233446" data-diff="9786" data-datestring="Apr 27, 2017" data-timestring="3:04 AM" title="Apr 27, 2017 at 3:04 AM">Today at 3:04 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/crazyyoyo3d.3357/" class="avatar Av3357s" data-avatarhtml="true"><img src="./index_files/3357.jpg" width="48" height="48" alt="CrazyYoyo3D"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">CrazyYoyo3D</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					no
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840633" class="" data-author="CrazyYoyo3D">
+		<div class="siropuChatMeta">
+			
+				<ul class="siropuChatMessageActions">
+					
+					
+					
+					
+					
+						<li><a href="http://ilovebacons.com/chat/840633/report" class="siropuChatReport OverlayTrigger" data-cacheoverlay="false" title="Report..."><i class="fa fa-exclamation-triangle"></i></a></li>
+					
+				</ul>
+			
+			<abbr class="DateTime" data-time="1493233452" data-diff="9780" data-datestring="Apr 27, 2017" data-timestring="3:04 AM" title="Apr 27, 2017 at 3:04 AM">Today at 3:04 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a href="http://ilovebacons.com/members/crazyyoyo3d.3357/" class="avatar Av3357s" data-avatarhtml="true"><img src="./index_files/3357.jpg" width="48" height="48" alt="CrazyYoyo3D"></a>
+					
+				
+				
+					
+						<a role="button" class="username Tooltip" title="Tag User">CrazyYoyo3D</a>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					no puns
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840634" class="siropuChatBot" data-author="XamCubex">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493233718" data-diff="9514" data-datestring="Apr 27, 2017" data-timestring="3:08 AM" title="Apr 27, 2017 at 3:08 AM">Today at 3:08 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/37526/" class="username" data-user="37526, XamCubex">XamCubex</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840635" class="siropuChatBot" data-author="dima734454">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493234229" data-diff="9003" data-datestring="Apr 27, 2017" data-timestring="3:17 AM" title="Apr 27, 2017 at 3:17 AM">Today at 3:17 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/48106/" class="username" data-user="48106, dima734454">dima734454</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840636" class="siropuChatForumActivityBot" data-author="Pandastuck">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493235110" data-diff="8122" data-datestring="Apr 27, 2017" data-timestring="3:31 AM" title="Apr 27, 2017 at 3:31 AM">Today at 3:31 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/51773/" class="username" data-user="51773, Pandastuck">Pandastuck</a> is our newest member. Welcome!
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840637" class="siropuChatBot" data-author="TheGamingPenguin">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493237520" data-diff="5712" data-datestring="Apr 27, 2017" data-timestring="4:12 AM" title="Apr 27, 2017 at 4:12 AM">Today at 4:12 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/51755/" class="username" data-user="51755, TheGamingPenguin">TheGamingPenguin</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840638" class="siropuChatBot" data-author="Hydrogen/Jungix">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493238257" data-diff="4975" data-datestring="Apr 27, 2017" data-timestring="4:24 AM" title="Apr 27, 2017 at 4:24 AM">Today at 4:24 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/47588/" class="username" data-user="47588, Hydrogen/Jungix">Hydrogen/Jungix</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840639" class="siropuChatForumActivityBot" data-author="Saltdrama">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493238945" data-diff="4287" data-datestring="Apr 27, 2017" data-timestring="4:35 AM" title="Apr 27, 2017 at 4:35 AM">Today at 4:35 AM</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/51774/" class="username" data-user="51774, Saltdrama">Saltdrama</a> is our newest member. Welcome!
+				
+			</span>
+			
+		</div>
+	</li>
+	
+	<li id="840640" class="siropuChatBot" data-author="Justice The Tankboy">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493241199" data-diff="2033" data-datestring="Apr 27, 2017" data-timestring="5:13 AM" title="Apr 27, 2017 at 5:13 AM">54 minutes ago</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/15366/" class="username" data-user="15366, Justice The Tankboy">Justice The Tankboy</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li><li id="840641" class="siropuChatBot" data-author="Justice The Tankboy">
+		<div class="siropuChatMeta">
+			
+			<abbr class="DateTime" data-time="1493243792" data-diff="40" data-datestring="Apr 27, 2017" data-timestring="5:56 AM" title="Apr 27, 2017 at 5:56 AM">11 minutes ago</abbr>
+		</div>
+		<div class="siropuChatContentLeft">
+			
+				
+					
+						<a class="avatar"><img src="./index_files/bot.png"></a>
+					
+				
+				
+					
+						<i><font style="color:#DBF6FF">BaconBot</font></i>:
+					
+				
+			
+			
+			<span class="siropuChatMessage">
+				
+					<a href="http://ilovebacons.com/members/15366/" class="username" data-user="15366, Justice The Tankboy">Justice The Tankboy</a> has joined the room.
+				
+			</span>
+			
+		</div>
+	</li></ol>
+					</div>
+				
+			
+		
+
+		
+	</div>
+
+	
+
+	
+
+	
+		<div id="siropuChatEditor">
+	
+		<form>
+			<input type="text" name="message" class="textCtrl UserTagger" maxlength="400" autocomplete="off" placeholder="Write a public message...">
+			<button type="submit" id="siropuChatSubmit" class="button primary"><span>Submit</span></button>
+		</form>
+		<div id="siropuChatBBCode">
+			
+				<button class="button" data-type="tag" data-tag="B" title="Bold"><i class="fa fa-bold"></i></button>
+			
+			
+				<button class="button" data-type="tag" data-tag="I" title="Italic"><i class="fa fa-italic"></i></button>
+			
+			
+				<button class="button" data-type="tag" data-tag="U" title="Underline"><i class="fa fa-underline"></i></button>
+			
+			
+				<button class="button" data-type="tag" data-tag="S" title="Strike-through"><i class="fa fa-strikethrough"></i></button>
+			
+			
+			
+			
+			
+			
+			
+			
+				<button class="button" data-type="smilie" title="Smilies"><i class="fa fa-smile-o"></i></button>
+			
+			
+			<button class="button Tooltip" id="chatToggleAutoscroll" title="Toggle Autoscroll" data-autoscroll="1" style="display: none;">↓</button>
+		</div>
+	
+	
+	
+</div>
+	
+</div>
+
+	<style>
+	#siropuChatSettings {
+		max-height: 300px;
+   		overflow: auto;
+	}
+	@media (max-width: 480px) {
+		body {
+			padding-bottom: 80px;
+		}
+	}
+	</style>
+	<div id="siropuChatBar">
+		<div id="siropuChatLastMessage" style="background: none; padding-left: 6px;" data-room-id="0" data-message-id="840641" data-userid="15366"><i class="fa fa-wechat"></i>
+
+	
+		<i><font style="color:#DBF6FF">BaconBot</font></i>:
+	
+	
+		Justice The Tankboy has joined the room.
+	
+	<abbr class="DateTime" data-time="1493243792" data-diff="40" data-datestring="Apr 27, 2017" data-timestring="5:56 AM" title="Apr 27, 2017 at 5:56 AM">11 minutes ago</abbr>
+</div>
+		<a href="http://ilovebacons.com/#" id="siropuChatToggle" class="Tooltip" title="Toggle Chat">Chat [<span>1</span>]</a>
+	</div>
+
+
+	<style>
+.colorPickerPlaceholder
+{
+	cursor: pointer;
+	display: inline-block;
+	zoom: 1;
+	width: 30px;
+	padding: 2px;
+	padding-right: 21px;
+	background-image: url('styles/black_responsive_blue/xenforo/color-picker/palette.png');
+	background-position: right center;
+	background-repeat: no-repeat;
+}
+
+	.colorPickerPlaceholder span
+	{
+		display: block;
+		cursor: pointer;
+		border-radius: 2px;
+		height: 17px;
+	} 
+
+		.colorPickerPlaceholder span.undefined
+		{ 
+			background: transparent url('styles/black_responsive_blue/xenforo/color-picker/undefined.png'); 
+			height: 17px; 
+		} 
+
+#ColorPickerInstance
+{
+	width: 486px;
+}
+
+.colorPickerForm
+{
+	overflow: hidden; zoom: 1;
+}
+
+/* tabs */
+
+.ColorPickerTabs
+{
+	width: 316px;
+	float: left;
+}
+
+.ColorPickerTabs .tabs
+{
+	padding-left: 10px;
+	margin-bottom: -1px;
+	background: transparent;
+}
+
+/* palette tab */
+
+.PaletteTab ul
+{
+	overflow: auto;
+	height: 280px;
+}
+
+	.PaletteTab li
+	{
+		overflow: hidden; zoom: 1;
+		border-bottom: 1px solid rgb(127, 127, 127);
+		cursor: pointer;
+		padding: 0 5px;
+		line-height: 26px;
+		font-size: 11px;
+	}
+
+		.PaletteTab li.selected
+		{
+			background: rgba(255,255,255, 0.5);
+			color: black;
+			font-weight: bold;
+		}
+
+			.PaletteTab li:hover,
+			.PaletteTab li.selected:hover
+			{
+				background: rgba(255,255,255, 0.25);
+				color: inherit;
+			}
+
+		.PaletteTab li .swatch
+		{
+			float: left;
+			margin-right: 5px;
+			width: 35px;
+			height: 24px;
+			border: 1px solid black;
+		}
+		
+
+
+/* picker tab */
+
+.PickerTab .gradientContainer
+{
+	float: left;
+	width: 258px;
+	height: 258px;
+	margin: 10px;
+	border: 1px solid rgb(142, 142, 142);
+}
+
+
+	.PickerTab .gradient
+	{
+		position: relative;
+		width: 256px;
+		height: 256px;
+		overflow: hidden;
+		background-image: url('styles/black_responsive_blue/xenforo/color-picker/gradient.png');
+		border: 1px solid black;
+		cursor: crosshair;
+	}
+
+		.PickerTab .gradient .circle
+		{
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background-image: url('styles/black_responsive_blue/xenforo/color-picker/circle.png');
+			margin: -5px 0 0 -5px;
+		}
+	
+.PickerTab .barContainer
+{
+	float: left;
+	margin: 10px 0;
+	width: 22px;
+	height: 258px;
+	border: 1px solid rgb(142, 142, 142);
+}
+
+	.PickerTab .bar
+	{
+		position: relative;
+		width: 20px;
+		height: 256px;
+		background-image: url('styles/black_responsive_blue/xenforo/color-picker/bar.png');
+		border: 1px solid black;
+	}
+
+		.PickerTab .bar .arrow
+		{
+			position: absolute;
+			width: 36px;
+			height: 9px;
+			background-image: url('styles/black_responsive_blue/xenforo/color-picker/arrows.png');
+			left: -8px;
+			margin-top: -5px;
+		}
+		
+/* fixed column */
+
+.fixedColumn
+{
+	float: left;
+	margin-left: 10px;
+	margin-top: 19px; /* tab height */
+}
+
+	#ColorPickerInstance .colorPreview
+	{
+		width: 68px;
+		border: 1px solid rgb(142, 142, 142);
+		background: transparent url('styles/black_responsive_blue/xenforo/color-picker/undefined.png');
+		margin-bottom: 10px;
+	}
+	
+		#ColorPickerInstance .preview,
+		#ColorPickerInstance .currentPreview
+		{
+			height: 38px;
+			border: 1px solid black;
+		}
+			
+			#ColorPickerInstance .preview
+			{
+				border-bottom: none;
+			}
+		
+			#ColorPickerInstance .currentPreview
+			{
+				border-top: none;
+			}
+			
+	#ColorPickerInstance .inputs li
+	{
+		overflow: hidden; zoom: 1;
+	}
+
+	#ColorPickerInstance .inputs label
+	{
+		display: inline-block;
+		width: 15px;
+		float: left;
+	}
+	
+	#ColorPickerInstance .inputs .textCtrl
+	{
+		width: 55px;
+		box-sizing: border-box;
+		text-align: right;
+		float: left;
+	}
+	
+	#ColorPickerInstance .inputs ul
+	{
+		margin: 10px 0;
+	}
+
+
+
+
+.fixedBottom
+{
+	clear: both;
+	overflow: hidden; zoom: 1;
+	padding-top: 10px;
+}
+
+.fixedBottom .finalValue
+{
+	width: 150px;
+}
+
+.fixedBottom .remove
+{
+	font-size: 11px;
+}
+
+.fixedBottom .buttons
+{
+	float: right;
+}
+
+	.fixedBottom .button
+	{
+		margin-left: 3px;
+		min-width: 60px;
+	}
+</style>
+
+
+<div id="ColorPickerInstance" class="xenOverlay siropuChatColorPicker">
+	<!--<a class="close OverlayCloser"></a>-->
+	<form class="colorPickerForm formOverlay">
+	
+		<div class="ColorPickerTabs">
+	
+			<ul class="tabs" data-panes="#ColorPickerInstance .tabPanel">
+				<li><a>Color Palette</a></li>
+				<li><a>Color Picker</a></li>
+			</ul>
+			
+			<fieldset class="tabPanel PaletteTab">
+				
+			</fieldset>
+			
+			<fieldset class="tabPanel PickerTab">
+				<div class="gradientContainer"><div class="gradient"><span class="circle"></span></div></div>
+				<div class="barContainer"><div class="bar"><span class="arrow"></span></div></div>
+			</fieldset>
+			
+		</div>
+		
+		<div class="fixedColumn">
+		
+			<div class="colorPreview">
+				<div class="preview"></div>
+				<div class="currentPreview"></div>
+			</div>
+			
+			<ul class="inputs">
+				<li><label for="pctrl_h">#</label> <input type="text" class="textCtrl" id="pctrl_h" name="hex"></li>
+				<li>
+					<ul>
+						<li><label for="pctrl_r">R</label> <input type="text" class="textCtrl ltr" id="pctrl_r" name="r"></li>
+						<li><label for="pctrl_g">G</label> <input type="text" class="textCtrl ltr" id="pctrl_g" name="g"></li>
+						<li><label for="pctrl_b">B</label> <input type="text" class="textCtrl ltr" id="pctrl_b" name="b"></li>
+					</ul>
+				</li>
+				<li><label for="pctrl_r">A</label> <input type="text" class="textCtrl ltr" id="pctrl_a" name="a"></li>
+			</ul>
+		
+		</div>
+		
+		<div class="fixedBottom">
+			<input type="text" name="final" class="textCtrl finalValue ltr">
+				
+			<label class="remove"><input type="checkbox" name="remove" value="1"> Clear value</label>
+			
+			<span class="buttons">
+				<input type="button" class="button primary save" value="Okay">
+				<input type="button" class="button OverlayCloser" value="Cancel">
+			</span>			
+		</div>
+		
+	</form>
+</div>
+
+
+</div>
+
+
+
+</footer>
+
+<script>
+
+
+jQuery.extend(true, XenForo,
+{
+	visitor: { user_id: 13991 },
+	serverTimeInfo:
+	{
+		now: 1493243230,
+		today: 1493222400,
+		todayDow: 4
+	},
+	_lightBoxUniversal: "0",
+	_enableOverlays: "1",
+	_animationSpeedMultiplier: "1",
+	_overlayConfig:
+	{
+		top: "10%",
+		speed: 200,
+		closeSpeed: 100,
+		mask:
+		{
+			color: "rgb(40, 40, 40)",
+			opacity: "0.9",
+			loadSpeed: 200,
+			closeSpeed: 100
+		}
+	},
+	_ignoredUsers: [],
+	_loadedScripts: {"sonnb_xengallery_editor":true,"nat_public_css":true,"nflj_showcase_font_awesome_rating":true,"nflj_showcase_item":true,"nflj_showcase_reviewfields":true,"nflj_showcase_item_image_gallery":true,"likes_summary":true,"nflj_showcase_item_reviews":true,"message_simple":true,"nflj_showcase_reviews":true,"bb_code":true,"moderator_bar":true,"unread_posts_count":true,"nflj_sportsbook_tab_links":true,"sonnb_xengallery_navbar_template":true,"EWRrio_hide":true,"wf_default":true,"siropu_chat":true,"siropu_chat_settings":true,"js\/nflj\/showcase\/jquery.tmpl.min.js?_v=49baa8da":true,"js\/nflj\/showcase\/jquery.easing.1.3.js?_v=49baa8da":true,"js\/nflj\/showcase\/jquery.elastislide.js?_v=49baa8da":true,"js\/nflj\/showcase\/gallery.js?_v=49baa8da":true,"js\/nflj\/showcase\/rating.js?_v=49baa8da":true,"js\/Siropu\/Chat\/chat.js?_v=72":true,"js\/Siropu\/Chat\/editor.js?_v=72":true,"js\/xenforo\/color_picker.js?_v=49baa8da":true},
+	_cookieConfig: { path: "/", domain: "", prefix: "xf_"},
+	_csrfToken: "13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e",
+	_csrfRefreshUrl: "login/csrf-token-refresh",
+	_jsVersion: "49baa8da",
+	_noRtnProtect: false,
+	_noSocialLogin: false,
+        giphyapikey: "dc6zaTOxFJmzC",
+        giphyresults: "6",
+        stgiphyrating: "",
+        gifyhttps: "",
+        giphyoffset: "1",
+        stgiphysize: "fixed_height",
+        stgiphypreview: "fixed_height_small",
+        stgiphypreviewmobile: "fixed_width_small",
+        giphybeneath: "1",
+        stgiphybbcode: "1",
+        stgiphytrending: "",
+        stgiphynicheon: "0",
+        stgiphysearchterm: "",
+});
+jQuery.extend(XenForo.phrases,
+{
+	cancel: "Cancel",
+
+	a_moment_ago:    "A moment ago",
+	one_minute_ago:  "1 minute ago",
+	x_minutes_ago:   "%minutes% minutes ago",
+	today_at_x:      "Today at %time%",
+	yesterday_at_x:  "Yesterday at %time%",
+	day_x_at_time_y: "%day% at %time%",
+
+	day0: "Sunday",
+	day1: "Monday",
+	day2: "Tuesday",
+	day3: "Wednesday",
+	day4: "Thursday",
+	day5: "Friday",
+	day6: "Saturday",
+
+	_months: "January,February,March,April,May,June,July,August,September,October,November,December",
+	_daysShort: "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+
+	following_error_occurred: "The following error occurred",
+	server_did_not_respond_in_time_try_again: "The server did not respond in time. Please try again.",
+	logging_in: "Logging in",
+	click_image_show_full_size_version: "Click this image to show the full-size version.",
+	show_hidden_content_by_x: "Show hidden content by {names}"
+});
+
+// Facebook Javascript SDK
+XenForo.Facebook.appId = "154257938093760";
+XenForo.Facebook.forceInit = false;
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<!-- BEGIN EMBEDDING CODE -->
+<script src="./index_files/v1.js.загружено" defer="" async=""></script>
+<iframe style="position:absolute;top:0;left:0;visibility:hidden;" src="./index_files/h1" id="tp-helper" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+<!-- END EMBEDDING CODE -->
+
+
+<div id="calroot" style="display: none; position: absolute;"><div id="calhead"><a id="calprev">←</a><div id="caltitle"></div><a id="calnext">→</a></div><div id="calbody"><div id="caldays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div id="calweeks"></div></div></div><div class="Menu JsOnly tabMenu forumsTabLinks" id="ForumsMenu">
+						<div class="primaryContent menuHeader">
+							<h3>Forums List</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+					
+						<li><a href="http://ilovebacons.com/forums/-/mark-read?date=1493243230" class="OverlayTrigger">Mark Forums Read</a></li>
+						<li><a href="http://ilovebacons.com/search/?type=post">Search Forums</a></li>
+						
+							<li><a href="http://ilovebacons.com/watched/forums">Watched Forums</a></li>
+							<li><a href="http://ilovebacons.com/watched/threads">Watched Threads</a></li>
+						
+						<li><a href="http://ilovebacons.com/find-new/posts" rel="nofollow">New Posts 
+	
+
+	
+	
+	<span class="postItemCount alert">
+		375
+	</span>
+</a></li>
+
+		<!-- vote -->
+<li><a target="_blank" href="http://starbound-servers.net/server/46/vote/?fallbackcaptcha=1&amp;username=Prometei"><font color="#BAFFBB;">Vote for Us</font></a></li>
+						
+						
+					
+					</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu membersTabLinks" id="XenForoUniq0">
+					<div class="primaryContent menuHeader">
+						<h3>Members</h3>
+						<div class="muted">Quick Links</div>
+					</div>
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+					
+						<li><a href="http://ilovebacons.com/members/">Notable Members</a></li>
+						
+						<li><a href="http://ilovebacons.com/online/">Current Visitors</a></li>
+						<li><a href="http://ilovebacons.com/recent-activity/">Recent Activity</a></li>
+						<li><a href="http://ilovebacons.com/find-new/profile-posts">New Profile Posts</a></li>
+					
+					</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu sportsbookTabLinks" id="XenForoUniq1">
+						<div class="primaryContent menuHeader">
+							<h3>bSports</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					
+
+<ul class="secondaryContent blockLinksList sportsbook">
+	
+		<li><a href="http://ilovebacons.com/bsports/mark-read?date=1493243230" class="OverlayTrigger">Mark Viewed</a></li>
+	
+	
+	<li><a href="http://ilovebacons.com/search/?type=sportsbook_event">Search Events</a></li>
+
+	<li><a href="http://ilovebacons.com/bsports/stats">Statistics</a></li>
+
+	<li><a href="http://ilovebacons.com/bsports/member">Most Active Members</a></li>
+
+	
+		<li><a href="http://ilovebacons.com/bsports/member/prometei.13991/">Your Wagers</a></li>
+	
+	
+	
+
+	
+		
+			<ul>
+				
+					
+						<li class="tablinkIndent"><a href="http://ilovebacons.com/bsports/watched-categories">Watched Categories</a></li>	
+						<li class="tablinkIndent"><a href="http://ilovebacons.com/bsports/watched">Watched Events</a></li>		
+					
+				
+			</ul>
+		
+		
+	
+
+	<li><a href="http://ilovebacons.com/find-new/sportsbook">New Events</a></li>
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu sonnb_xengalleryTabLinks" id="XenForoUniq2">
+						<div class="primaryContent menuHeader">
+							<h3>Gallery</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					
+
+<ul class="secondaryContent blockLinksList xengallery">
+	
+		
+			
+				<li><a href="http://ilovebacons.com/gallery/albums/create">Create New Album</a></li>
+				<li><a class="OverlayTrigger" href="http://ilovebacons.com/gallery/photos/create">Add New Photos</a></li>
+			
+			
+				<li><a class="OverlayTrigger" href="http://ilovebacons.com/gallery/videos/create">Add New Videos</a></li>
+			
+			<li><a href="http://ilovebacons.com/gallery/authors/prometei.13991/">My Albums</a></li>
+		
+		
+			<li><a href="http://ilovebacons.com/gallery/categories">Categories</a></li>
+		
+		<li><a title="Explore User&#39;s Albums" class="OverlayTrigger" href="http://ilovebacons.com/gallery/explore-user">Explore User's Albums</a></li>
+		<li><a title="New Albums" href="http://ilovebacons.com/gallery/new-albums">New Albums</a></li>
+		<li><a title="New Photos" href="http://ilovebacons.com/gallery/new-photos">New Photos</a></li>
+		<li><a title="New Videos" href="http://ilovebacons.com/gallery/new-videos">New Videos</a></li>
+		<li><a title="New Comments" href="http://ilovebacons.com/gallery/new-comments">New Comments</a></li>
+	
+	
+		<li><a title="All interesting, fantastic and amazing photos/albums collected and promoted by our staffs on iLoveBacons " href="http://ilovebacons.com/gallery/collections">Collections</a></li>
+	
+	
+	
+	<li><a title="The most active tags/keywords are being used at iLoveBacons" href="http://ilovebacons.com/gallery/tags">Tags Cloud</a></li>
+</ul>	
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu chatTabLinks" id="XenForoUniq3">
+						<div class="primaryContent menuHeader">
+							<h3>Chat</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+	
+	
+		<li><a href="http://ilovebacons.com/chat/top">Top Chatters</a></li>
+	
+	
+	
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu competitionsTabLinks" id="XenForoUniq4">
+						<div class="primaryContent menuHeader">
+							<h3>Competitions</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+	<li><a href="http://ilovebacons.com/competitions/">Competition Index</a></li>
+	<li><a href="http://ilovebacons.com/competitions/terms">Rules, Terms &amp; Conditions</a></li>
+	
+	
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu addmTabLinks" id="XenForoUniq5">
+						<div class="primaryContent menuHeader">
+							<h3>Donations</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+	<li><a href="http://ilovebacons.com/donations/">Donation Campaigns</a></li>
+	
+		<li><a href="http://ilovebacons.com/donations/top-donors">Top Donors</a></li>
+	
+	
+		<li><a href="http://ilovebacons.com/donations/top-donations">Top Donations</a></li>
+	
+	
+		<li><a href="http://ilovebacons.com/donations/top-campaigns">Top Campaigns</a></li>
+	
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu streamsTabLinks" id="XenForoUniq6">
+						<div class="primaryContent menuHeader">
+							<h3>Streams</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					
+	
+
+
+<ul class="secondaryContent blockLinksList">
+	<li><a href="http://ilovebacons.com/streams/">Live Streams</a></li>
+	<li><a href="http://ilovebacons.com/streams/multi">MultiView</a></li>
+	<li><a href="http://ilovebacons.com/streams/channels">Channels</a></li>
+	<li><a href="http://ilovebacons.com/streams/games">Games</a></li>
+
+	
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu groupsTabLinks" id="XenForoUniq7">
+						<div class="primaryContent menuHeader">
+							<h3>Groups</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+    <li><a href="http://ilovebacons.com/search/?type=team">Search Groups</a></li>
+
+    
+        <li><a href="http://ilovebacons.com/groups/categories/watched">Watched Categories</a></li>
+
+        <li><a href="http://ilovebacons.com/groups/browsegroups/membership?category=admin">Groups You Manage</a></li>
+        <li><a href="http://ilovebacons.com/groups/browsegroups/membership">Groups You're Joined</a></li>
+        <li><a href="http://ilovebacons.com/groups/browsegroups/membership?category=pending">Pending Groups</a></li>
+        <li><a href="http://ilovebacons.com/groups/browsegroups/membership?category=invited">Invited Groups</a></li>
+        
+          
+            <li><a href="http://ilovebacons.com/groups/members/roles">Member Role List</a></li>
+        
+        
+        <li><a href="http://ilovebacons.com/groups/add">Add New Group</a></li>
+        
+        <!-- Hook: Add_new_tab_links -->
+        
+    
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly tabMenu MasterBadgeTabLinks" id="XenForoUniq8">
+						<div class="primaryContent menuHeader">
+							<h3>Badges</h3>
+							<div class="muted">Quick Links</div>
+						</div>
+				
+					
+					
+
+					<ul class="secondaryContent blockLinksList">
+	
+	<li><a href="http://ilovebacons.com/badges/">Badges</a></li>
+	<li><a href="http://ilovebacons.com/members/prometei.13991/badges/">Your Badges</a></li>
+	
+</ul>
+
+					
+					
+				</div><div class="Menu JsOnly blockLinksList primaryContent" id="NavigationHiddenMenu"></div><div class="Menu JsOnly" id="AccountMenu">
+			<div class="primaryContent menuHeader">
+				<a href="http://ilovebacons.com/members/prometei.13991/" class="avatar Av13991m NoOverlay plainImage" title="View your profile" data-avatarhtml="true"><span class="img m" style="background-image: url(&#39;data/avatars/m/13/13991.jpg?1427630076&#39;)"></span></a>
+				
+				<h3><a href="http://ilovebacons.com/members/prometei.13991/" class="username concealed" title="View your profile">Prometei</a></h3>
+				
+				
+				
+				<ul class="links">
+					<li class="fl"><a href="http://ilovebacons.com/members/prometei.13991/">Your Profile Page</a></li>
+				</ul>
+			</div>
+			<div class="menuColumns secondaryContent">
+				<ul class="col1 blockLinksList">
+				
+					<li><a href="http://ilovebacons.com/account/personal-details">Personal Details</a></li>
+					<li><a href="http://ilovebacons.com/account/signature">Signature</a></li>
+
+					<li><a href="http://ilovebacons.com/account/contact-details">Contact Details</a></li>
+					<li><a href="http://ilovebacons.com/account/privacy">Privacy</a></li>
+					<li><a href="http://ilovebacons.com/account/preferences" class="OverlayTrigger">Preferences</a></li>
+					<li><a href="http://ilovebacons.com/account/alert-preferences">Alert Preferences</a></li>
+					<li><a href="http://ilovebacons.com/account/avatar" class="OverlayTrigger" data-cacheoverlay="true">Avatar</a></li>
+					<li><a href="http://ilovebacons.com/account/external-accounts">External Accounts</a></li>
+					<li><a href="http://ilovebacons.com/account/security">Password</a></li>
+
+
+<li><a href="http://ilovebacons.com/members/prometei.13991/badges/">Badges</a></li>
+				
+				</ul>
+				<ul class="col2 blockLinksList">
+				
+					<li><a href="http://ilovebacons.com/account/news-feed">Your News Feed</a></li>
+					<li><a href="http://ilovebacons.com/conversations/">Conversations
+						<strong class="itemCount Zero" id="VisitorExtraMenu_ConversationsCounter">
+							<span class="Total">0</span>
+						</strong></a></li>
+					<li><a href="http://ilovebacons.com/account/alerts">Alerts
+						<strong class="itemCount Zero" id="VisitorExtraMenu_AlertsCounter">
+							<span class="Total">0</span>
+						</strong></a></li>
+					<li><a href="http://ilovebacons.com/account/likes">Likes Received</a></li>
+					<li><a href="http://ilovebacons.com/members/prometei.13991/trophies/" class="concealed OverlayTrigger">Trophies</a></li>
+					<li><a href="http://ilovebacons.com/search/member?user_id=13991">Your Content</a></li>
+					<li><a href="http://ilovebacons.com/account/following">People You Follow</a></li>
+					<li><a href="http://ilovebacons.com/account/ignored">People You Ignore</a></li>
+					
+				
+
+<li><a href="http://ilovebacons.com/account/xengallery">XenGallery Settings</a></li>
+				</ul>
+			</div>
+			<div class="menuColumns secondaryContent">
+				<ul class="col1 blockLinksList">
+					<li>				
+						<form action="http://ilovebacons.com/account/toggle-visibility" method="post" class="AutoValidator visibilityForm">
+							<label><input type="checkbox" name="visible" value="1" class="SubmitOnChange" checked="checked">
+								Show online status</label>
+							<input type="hidden" name="_xfToken" value="13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e">
+						</form>
+					</li>
+				</ul>
+				<ul class="col2 blockLinksList">
+					<li><a href="http://ilovebacons.com/logout/?_xfToken=13991%2C1493243230%2Cabef87f54c86d2cc4b5f5762c753420a2ab78a0e" class="LogOut">Log Out</a></li>
+				</ul>
+			</div>
+			
+				<form action="http://ilovebacons.com/members/prometei.13991/post" method="post" class="sectionFooter statusPoster AutoValidator" data-optinout="OptIn">
+					<textarea name="message" class="textCtrl StatusEditor UserTagger Elastic" data-acurl="members/group-find" placeholder="Update your status..." rows="1" cols="40" style="height:18px" data-statuseditorcounter="#visMenuSEdCount" data-nofocus="true"></textarea>
+					<div class="submitUnit" style="display: none;">
+						<span id="visMenuSEdCount" title="Characters remaining" class="statusEditorCounter">140</span>
+						<input type="submit" class="button primary MenuCloser" value="Post">
+						<input type="hidden" name="_xfToken" value="13991,1493243230,abef87f54c86d2cc4b5f5762c753420a2ab78a0e">
+						<input type="hidden" name="return" value="1"> 
+					</div>
+				</form>
+			
+		</div><div class="Menu JsOnly navPopup" id="ConversationsMenu" data-contentsrc="conversations/popup" data-contentdest="#ConversationsMenu .listPlaceholder">
+			
+			<div class="menuHeader primaryContent">
+				<h3>
+					<span class="Progress"></span>
+					<a href="http://ilovebacons.com/conversations/" class="concealed">Conversations</a>
+				</h3>						
+			</div>
+			
+			<div class="listPlaceholder"></div>
+			
+			<div class="sectionFooter">
+				<a href="http://ilovebacons.com/conversations/add" class="floatLink">Start a New Conversation</a>
+				<a href="http://ilovebacons.com/conversations/">Show All...</a>
+			</div>
+		</div><div class="Menu JsOnly navPopup" id="AlertsMenu" data-contentsrc="account/alerts-popup" data-contentdest="#AlertsMenu .listPlaceholder" data-removecounter="#AlertsMenu_Counter">
+			
+			<div class="menuHeader primaryContent">
+				<h3>
+					<span class="Progress"></span>
+					<a href="http://ilovebacons.com/account/alerts" class="concealed">Alerts</a>
+				</h3>
+			</div>
+			
+			<div class="listPlaceholder"></div>
+			
+			<div class="sectionFooter">
+				<a href="http://ilovebacons.com/account/alert-preferences" class="floatLink">Alert Preferences</a>
+				<a href="http://ilovebacons.com/account/alerts">Show All...</a>
+			</div>
+		</div><div class="Menu" id="XenForoUniq9">
+								<div class="primaryContent menuHeader">
+									<h3>Useful Searches</h3>
+								</div>
+								<ul class="secondaryContent blockLinksList">
+									<!-- block: useful_searches -->
+									<li><a href="http://ilovebacons.com/find-new/posts?recent=1" rel="nofollow">Recent Posts</a></li>
+									
+									<li><a href="http://ilovebacons.com/search/member?user_id=13991&amp;content=thread">Your Threads</a></li>
+									<li><a href="http://ilovebacons.com/search/member?user_id=13991&amp;content=post">Your Posts</a></li>
+									<li><a href="http://ilovebacons.com/search/member?user_id=13991&amp;content=profile_post">Your Profile Posts</a></li>
+									
+									<!-- end block: useful_searches -->
+								</ul>
+							</div><div class="Menu" id="XenForoUniq10">
+						<div class="primaryContent menuHeader">
+							<h3>Settings</h3>
+						</div>
+						
+
+<form id="siropuChatSettings">
+	<fieldset data-type="sound">
+		<legend>Sound</legend>
+		<label><input type="checkbox" name="sound[normal]" value="1" checked="checked"> Normal Messages</label><br>
+		<label><input type="checkbox" name="sound[private]" value="1"> Private Messages</label><br>
+		<label><input type="checkbox" name="sound[whisper]" value="1" checked="checked"> Whisper Messages</label><br>
+		<label><input type="checkbox" name="sound[tagged]" value="1" checked="checked"> Tag Messages</label><br>
+		<label><input type="checkbox" name="sound[bot]" value="1"> Bot Messages</label><br>
+	</fieldset>
+	
+		<fieldset data-type="notification">
+			<legend>Desktop Notifications</legend>
+			<label><input type="checkbox" name="notification[normal]" value="1"> Normal Messages</label><br>
+			<label><input type="checkbox" name="notification[private]" value="1"> Private Messages</label><br>
+			<label><input type="checkbox" name="notification[whisper]" value="1" checked="checked"> Whisper Messages</label><br>
+			<label><input type="checkbox" name="notification[tagged]" value="1" checked="checked"> Tag Messages</label><br>
+			<label><input type="checkbox" name="notification[bot]" value="1"> Bot Messages</label><br>
+		</fieldset>
+	
+	<fieldset data-type="miscellaneous">
+		<legend>Miscellaneous</legend>
+		<label><input type="checkbox" name="maximized" value="1" checked="checked"> Enable maximized mode</label><br>
+		<label><input type="checkbox" name="inverse" value="1"> Inverse messages direction</label><br>
+		<label><input type="checkbox" name="images_as_links" value="1"> Display images as links</label><br>
+		<label><input type="checkbox" name="editor_on_top" value="1"> Place editor on top</label><br>
+		<label><input type="checkbox" name="hide_bot" value="1"> Hide bot messages</label><br>
+		<label><input type="checkbox" name="hide_status" value="1"> Hide statuses</label><br>
+		
+			<label><input type="checkbox" name="hide_chatters" value="1"> Hide chatters list</label><br>
+		
+		
+			<label><input type="checkbox" name="show_ignored" value="1"> Show ignored users' messages</label><br>
+		
+		
+			<label><input type="checkbox" name="disable_autohide" value="1"> Disable auto hide</label><br>
+		
+		
+			<label><input type="checkbox" name="disabled" value="1"> Disable chat</label>
+		
+		
+		
+	</fieldset>
+</form>
+					</div><div class="Menu" id="XenForoUniq11">
+					<div class="primaryContent menuHeader">
+						<h3>Options</h3>
+					</div>
+					<ul class="secondaryContent blockLinksList">
+						
+						
+						
+						
+						
+						
+							<li><a href="http://ilovebacons.com/chat/fullpage" target="chatWindowPopup" onclick="chatOpenPopup(); return false;">Open in Popup</a></li>
+						
+						
+						
+							<li><a href="http://ilovebacons.com/chat/top" class="OverlayTrigger" data-cacheoverlay="false">View Top Chatters</a></li>
+						
+						
+					</ul>
+				</div><div class="Menu siropuChatUserMenu" data-time="1493244492" id="XenForoUniq23">
+						<div class="primaryContent menuHeader">
+							<h3>Actions</h3>
+						</div>
+						<ul class="secondaryContent blockLinksList">
+							 
+								<li><a role="button" class="siropuChatWhisperAction" data-username="Justice The Tankboy">Whisper</a></li>
+							
+							
+							 
+								<li>
+									
+										<a href="http://ilovebacons.com/members/justice-the-tankboy.15366/ignore" class="FollowLink">Ignore</a>
+									
+								</li>
+							
+							
+							
+							
+							
+							
+						</ul>
+					</div></body></html>
